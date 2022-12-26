@@ -140,6 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BigNumbers.cpp" />
+    <ClCompile Include="Number.cpp" />
+    <ClCompile Include="NumbersParser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Number.h" />
+    <ClInclude Include="NumbersParser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
