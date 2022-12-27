@@ -1,10 +1,52 @@
 ﻿#include "Number.h"
 
+bool Number::isValidDecimal(std::string number)
+{
+	bool isValid = true;
+	for (int i = 0; i < number.length(); i++)
+	{
+		if (number[i] < '0' || '9' < number[i]) 
+		{
+			isValid = false; break;
+		}
+	}
+
+	return isValid;
+}
+
+bool Number::isValidHexa(std::string number)
+{
+	bool isValid = true;
+	for (int i = 0; i < number.length(); i++)
+	{
+		if (!('0' <= number[i] && number[i] <= '9') && 
+			!('A' <= number[i] && number[i] <= 'F'))
+		{
+			isValid = false; break;
+		}
+	}
+
+	return isValid;
+}
+
 void Number::operator>>(std::istream& in)
 {
 	if (in.good()) 
 	{
-		in >> this->number;
+		std::string number;
+		in >> number;
+		
+		if (isValidDecimal(number)) 
+		{
+			this->number = number;
+			this->type = NumberType::DECIMAL;
+		}
+
+		if (isValidHexa(number))
+		{
+			this->number = number;
+			this->type = NumberType::HEXA;
+		}
 	}
 }
 
@@ -12,85 +54,16 @@ void Number::operator <<(std::ostream& os)
 {
 	if (os.good()) 
 	{
-		os << this->number << ", ";
+		os << "Number: " << this->number << '\n';
 	}
 }
 
-void Number::printDecimal()
+std::string Number::getNumber() 
 {
-	std::cout << number;
+	return this->number;
 }
 
-std::string Number::addDecimals(const Number num)
+NumberType Number::getType() 
 {
-	char* number1 = NumbersParser::toCharArray(this->number);
-	char* number2 = NumbersParser::toCharArray(num.number);
-	
-	long sum = NumbersParser::stringToNumber(number1, 10) + NumbersParser::stringToNumber(number2, 10);
-	std::string res = NumbersParser::numberToString(sum, 10);
-
-	return res;
-}
-
-std::string Number::substractDecimals(const Number num)
-{
-	char* number1 = NumbersParser::toCharArray(this->number);
-	char* number2 = NumbersParser::toCharArray(num.number);
-
-	long subs = std::abs(NumbersParser::stringToNumber(number1, 10) - NumbersParser::stringToNumber(number2, 10));
-	std::string res = "";
-	if(NumbersParser::stringToNumber(number1, 10) < NumbersParser::stringToNumber(number2, 10))
-	{
-		res += '-';
-	}
-	res += NumbersParser::numberToString(subs, 10);
-
-	return res;
-}
-
-void Number::devideDecimals(const Number num, long& q, long& r)
-{
-	char* number1 = NumbersParser::toCharArray(this->number);
-	char* number2 = NumbersParser::toCharArray(num.number);
-
-	q = NumbersParser::stringToNumber(number1, 10) / NumbersParser::stringToNumber(number2, 10);
-	r = NumbersParser::stringToNumber(number1, 10) % NumbersParser::stringToNumber(number2, 10);
-}
-
-std::string Number::multiplyDecimals(const Number num)
-{
-	char* number1 = NumbersParser::toCharArray(this->number);
-	char* number2 = NumbersParser::toCharArray(num.number);
-
-	long pr = NumbersParser::stringToNumber(number1, 10) * NumbersParser::stringToNumber(number2, 10);
-	std::string res = NumbersParser::numberToString(pr, 10);
-
-	return res;
-}
-
-std::string Number::sqrtDecimals() 
-{
-	char* n = NumbersParser::toCharArray(this->number);
-
-	long x = NumbersParser::stringToNumber(n, 10);
-	long c = 0;
-	long d = 1 << 30; 
-	
-	while (d > x)
-	{
-		d >>= 2;
-
-		while (d != 0) {
-			if (x >= c + d) {
-				x -= c + d;
-				c = (c >> 1) + d;
-			}
-			else {
-				c >>= 1;
-			}
-			d >>= 2;
-		}
-	}
-	
-	return NumbersParser::numberToString(c, 10);
+	return this->type;
 }

@@ -140,12 +140,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BigNumbers.cpp" />
+    <ClCompile Include="DecimalCalculator.cpp" />
     <ClCompile Include="Number.cpp" />
-    <ClCompile Include="NumbersParser.cpp" />
+    <ClCompile Include="DecimalNumbersParser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Calculator.h" />
+    <ClInclude Include="DecimalCalculator.h" />
     <ClInclude Include="Number.h" />
-    <ClInclude Include="NumbersParser.h" />
+    <ClInclude Include="DecimalNumbersParser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
