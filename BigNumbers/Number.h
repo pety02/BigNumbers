@@ -1,4 +1,5 @@
 #include "DecimalNumbersParser.h"
+#include "HexaNumbersParser.h"
 #include <fstream>
 #pragma once
 
@@ -15,8 +16,10 @@ private:
 
 	bool isValidDecimal(std::string);
 	bool isValidHexa(std::string);
-
+	void setNumberAndNumberType(std::string);
 public:
+	Number();
+	Number(std::string);
 	void operator >>(std::istream&);
 	void operator <<(std::ostream&);
 

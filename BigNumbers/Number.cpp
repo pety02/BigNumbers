@@ -29,6 +29,33 @@ bool Number::isValidHexa(std::string number)
 	return isValid;
 }
 
+void Number::setNumberAndNumberType(std::string number)
+{
+	if (isValidDecimal(number))
+	{
+		this->number = number;
+		this->type = NumberType::DECIMAL;
+		return;
+	}
+
+	if (isValidHexa(number))
+	{
+		this->number = number;
+		this->type = NumberType::HEXA;
+		return;
+	}
+}
+
+Number::Number()
+{
+	setNumberAndNumberType("0");
+}
+
+Number::Number(std::string number)
+{
+	setNumberAndNumberType(number);
+}
+
 void Number::operator>>(std::istream& in)
 {
 	if (in.good()) 
@@ -36,17 +63,7 @@ void Number::operator>>(std::istream& in)
 		std::string number;
 		in >> number;
 		
-		if (isValidDecimal(number)) 
-		{
-			this->number = number;
-			this->type = NumberType::DECIMAL;
-		}
-
-		if (isValidHexa(number))
-		{
-			this->number = number;
-			this->type = NumberType::HEXA;
-		}
+		setNumberAndNumberType(number);
 	}
 }
 
@@ -54,7 +71,7 @@ void Number::operator <<(std::ostream& os)
 {
 	if (os.good()) 
 	{
-		os << "Number: " << this->number << '\n';
+		os << this->number << '\n';
 	}
 }
 

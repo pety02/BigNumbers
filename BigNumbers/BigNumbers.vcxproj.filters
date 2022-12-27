@@ -24,7 +24,13 @@
     <ClCompile Include="DecimalNumbersParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DecimalCalculator.cpp">
+    <ClCompile Include="Calculator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HexaNumbersParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Helpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,7 +44,10 @@
     <ClInclude Include="Calculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DecimalCalculator.h">
+    <ClInclude Include="HexaNumbersParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

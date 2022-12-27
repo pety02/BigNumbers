@@ -1,12 +1,13 @@
 #pragma once
 #include "Number.h"
+#include "Helpers.h"
 
 class Calculator
 {
 public:
-	virtual std::string add(Number, Number) = 0;
-	virtual std::string substract(Number, Number) = 0;
-	virtual void devide(Number, Number, long&, long&) = 0;
-	virtual std::string multiply(Number, Number) = 0;
-	virtual std::string sqrt(Number) = 0;
+	static std::string add(Number, Number);
+	static std::string substract(Number, Number);
+	static void devide(Number, Number, long&, long&);
+	static std::string multiply(Number, Number);
+	static std::string sqrt(Number);
 };
