@@ -6,9 +6,10 @@
 class HexaNumbersParser
 {
 private:
-	static int findGeatestPower(long n, int base);
+	static int findGeatestPower(long n);
 
 public:
-	static long hexaToNumber(const char*, int);
-	static std::string numberToHexa(long, int);
+	static const int BASE = 16;
+	static long hexaToNumber(const char*);
+	static std::string numberToHexa(long);
 };

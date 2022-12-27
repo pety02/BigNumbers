@@ -7,8 +7,8 @@ std::string Calculator::add(Number n1, Number n2)
 		char* number1 = Helpers::toCharArray(n1.getNumber());
 		char* number2 = Helpers::toCharArray(n2.getNumber());
 
-		long sum = DecimalNumbersParser::stringToNumber(number1, 10) + DecimalNumbersParser::stringToNumber(number2, 10);
-		return DecimalNumbersParser::numberToString(sum, 10);
+		long sum = DecimalNumbersParser::stringToNumber(number1) + DecimalNumbersParser::stringToNumber(number2);
+		return DecimalNumbersParser::numberToString(sum);
 	}
 
 	if (n1.getType() == NumberType::HEXA && n2.getType() == NumberType::HEXA)
@@ -16,8 +16,8 @@ std::string Calculator::add(Number n1, Number n2)
 		char* number1 = Helpers::toCharArray(n1.getNumber());
 		char* number2 = Helpers::toCharArray(n2.getNumber());
 
-		long sum = HexaNumbersParser::hexaToNumber(number1, 16) + HexaNumbersParser::hexaToNumber(number2, 16);
-		return HexaNumbersParser::numberToHexa(sum, 16);
+		long sum = HexaNumbersParser::hexaToNumber(number1) + HexaNumbersParser::hexaToNumber(number2);
+		return HexaNumbersParser::numberToHexa(sum);
 	}
 }
 
@@ -28,13 +28,13 @@ std::string Calculator::substract(Number n1, Number n2)
 		char* number1 = Helpers::toCharArray(n1.getNumber());
 		char* number2 = Helpers::toCharArray(n2.getNumber());
 
-		long subs = std::abs(DecimalNumbersParser::stringToNumber(number1, 10) - DecimalNumbersParser::stringToNumber(number2, 10));
+		long subs = std::abs(DecimalNumbersParser::stringToNumber(number1) - DecimalNumbersParser::stringToNumber(number2));
 		std::string res = "";
-		if (DecimalNumbersParser::stringToNumber(number1, 10) < DecimalNumbersParser::stringToNumber(number2, 10))
+		if (DecimalNumbersParser::stringToNumber(number1) < DecimalNumbersParser::stringToNumber(number2))
 		{
 			res += "-";
 		}
-		res += DecimalNumbersParser::numberToString(subs, 10);
+		res += DecimalNumbersParser::numberToString(subs);
 
 		return res;
 	}
@@ -44,13 +44,13 @@ std::string Calculator::substract(Number n1, Number n2)
 		char* number1 = Helpers::toCharArray(n1.getNumber());
 		char* number2 = Helpers::toCharArray(n2.getNumber());
 
-		long subs = std::abs(HexaNumbersParser::hexaToNumber(number1, 16) - HexaNumbersParser::hexaToNumber(number2, 16));
+		long subs = std::abs(HexaNumbersParser::hexaToNumber(number1) - HexaNumbersParser::hexaToNumber(number2));
 		std::string res = "";
-		if (HexaNumbersParser::hexaToNumber(number1, 16) < HexaNumbersParser::hexaToNumber(number2, 16))
+		if (HexaNumbersParser::hexaToNumber(number1) < HexaNumbersParser::hexaToNumber(number2))
 		{
 			res += "-";
 		}
-		res += HexaNumbersParser::numberToHexa(subs, 16);
+		res += HexaNumbersParser::numberToHexa(subs);
 
 		return res;
 	}
@@ -63,8 +63,8 @@ void Calculator::devide(Number n1, Number n2, long& q, long& r)
 		char* number1 = Helpers::toCharArray(n1.getNumber());
 		char* number2 = Helpers::toCharArray(n2.getNumber());
 
-		q = DecimalNumbersParser::stringToNumber(number1, 10) / DecimalNumbersParser::stringToNumber(number2, 10);
-		r = DecimalNumbersParser::stringToNumber(number1, 10) % DecimalNumbersParser::stringToNumber(number2, 10);
+		q = DecimalNumbersParser::stringToNumber(number1) / DecimalNumbersParser::stringToNumber(number2);
+		r = DecimalNumbersParser::stringToNumber(number1) % DecimalNumbersParser::stringToNumber(number2);
 
 		return;
 	}
@@ -74,8 +74,8 @@ void Calculator::devide(Number n1, Number n2, long& q, long& r)
 		char* number1 = Helpers::toCharArray(n1.getNumber());
 		char* number2 = Helpers::toCharArray(n2.getNumber());
 
-		q = HexaNumbersParser::hexaToNumber(number1, 16) / HexaNumbersParser::hexaToNumber(number2, 16);
-		r = HexaNumbersParser::hexaToNumber(number1, 16) % HexaNumbersParser::hexaToNumber(number2, 16);
+		q = HexaNumbersParser::hexaToNumber(number1) / HexaNumbersParser::hexaToNumber(number2);
+		r = HexaNumbersParser::hexaToNumber(number1) % HexaNumbersParser::hexaToNumber(number2);
 
 		return;
 	}
@@ -88,8 +88,8 @@ std::string Calculator::multiply(Number n1, Number n2)
 		char* number1 = Helpers::toCharArray(n1.getNumber());
 		char* number2 = Helpers::toCharArray(n2.getNumber());
 
-		long pr = DecimalNumbersParser::stringToNumber(number1, 10) * DecimalNumbersParser::stringToNumber(number2, 10);
-		std::string res = DecimalNumbersParser::numberToString(pr, 10);
+		long pr = DecimalNumbersParser::stringToNumber(number1) * DecimalNumbersParser::stringToNumber(number2);
+		std::string res = DecimalNumbersParser::numberToString(pr);
 
 		return res;
 	}
@@ -99,8 +99,8 @@ std::string Calculator::multiply(Number n1, Number n2)
 		char* number1 = Helpers::toCharArray(n1.getNumber());
 		char* number2 = Helpers::toCharArray(n2.getNumber());
 
-		long pr = HexaNumbersParser::hexaToNumber(number1, 16) * HexaNumbersParser::hexaToNumber(number2, 16);
-		std::string res = HexaNumbersParser::numberToHexa(pr, 16);
+		long pr = HexaNumbersParser::hexaToNumber(number1) * HexaNumbersParser::hexaToNumber(number2);
+		std::string res = HexaNumbersParser::numberToHexa(pr);
 
 		return res;
 	}
@@ -112,7 +112,7 @@ std::string Calculator::sqrt(Number n1)
 	{
 		char* n = Helpers::toCharArray(n1.getNumber());
 
-		long x = DecimalNumbersParser::stringToNumber(n, 10);
+		long x = DecimalNumbersParser::stringToNumber(n);
 		long c = 0;
 		long d = 1 << 30;
 
@@ -132,14 +132,14 @@ std::string Calculator::sqrt(Number n1)
 			}
 		}
 
-		return DecimalNumbersParser::numberToString(c, 10);
+		return DecimalNumbersParser::numberToString(c);
 	}
 
 	if (n1.getType() == NumberType::HEXA)
 	{
 		char* n = Helpers::toCharArray(n1.getNumber());
 
-		long x = HexaNumbersParser::hexaToNumber(n, 16);
+		long x = HexaNumbersParser::hexaToNumber(n);
 		long c = 0;
 		long d = 1 << 30;
 
@@ -159,6 +159,6 @@ std::string Calculator::sqrt(Number n1)
 			}
 		}
 
-		return HexaNumbersParser::numberToHexa(c, 16);
+		return HexaNumbersParser::numberToHexa(c);
 	}
 }

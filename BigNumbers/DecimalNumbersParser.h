@@ -6,6 +6,7 @@
 class DecimalNumbersParser
 {
 public:
-	static long stringToNumber(const char*, int);
-	static std::string numberToString(long, int);
+	static const int BASE = 10;
+	static long stringToNumber(const char*);
+	static std::string numberToString(long);
 };

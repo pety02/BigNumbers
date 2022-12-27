@@ -36,9 +36,8 @@ void Number::setNumberAndNumberType(std::string number)
 		this->number = number;
 		this->type = NumberType::DECIMAL;
 		return;
-	}
-
-	if (isValidHexa(number))
+	} 
+	else if (isValidHexa(number))
 	{
 		this->number = number;
 		this->type = NumberType::HEXA;
