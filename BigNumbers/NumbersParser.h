@@ -17,6 +17,7 @@ private:
 
 		return cnt;
 	}
+
 public:
 	static long stringToNumber(const char* sPos, int base) 
 	{

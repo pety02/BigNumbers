@@ -1,8 +1,19 @@
-#include "Number.h"
+﻿#include "Number.h"
 
-void Number::operator>>(const std::string number)
+void Number::operator>>(std::istream& in)
 {
-	this->number = number;
+	if (in.good()) 
+	{
+		in >> this->number;
+	}
+}
+
+void Number::operator <<(std::ostream& os)
+{
+	if (os.good()) 
+	{
+		os << this->number << ", ";
+	}
 }
 
 void Number::printDecimal()
@@ -26,8 +37,13 @@ std::string Number::substractDecimals(const Number num)
 	char* number1 = NumbersParser::toCharArray(this->number);
 	char* number2 = NumbersParser::toCharArray(num.number);
 
-	long subs = NumbersParser::stringToNumber(number1, 10) - NumbersParser::stringToNumber(number2, 10);
-	std::string res = NumbersParser::numberToString(subs, 10);
+	long subs = std::abs(NumbersParser::stringToNumber(number1, 10) - NumbersParser::stringToNumber(number2, 10));
+	std::string res = "";
+	if(NumbersParser::stringToNumber(number1, 10) < NumbersParser::stringToNumber(number2, 10))
+	{
+		res += '-';
+	}
+	res += NumbersParser::numberToString(subs, 10);
 
 	return res;
 }
@@ -50,4 +66,31 @@ std::string Number::multiplyDecimals(const Number num)
 	std::string res = NumbersParser::numberToString(pr, 10);
 
 	return res;
+}
+
+std::string Number::sqrtDecimals() 
+{
+	char* n = NumbersParser::toCharArray(this->number);
+
+	long x = NumbersParser::stringToNumber(n, 10);
+	long c = 0;
+	long d = 1 << 30; 
+	
+	while (d > x)
+	{
+		d >>= 2;
+
+		while (d != 0) {
+			if (x >= c + d) {
+				x -= c + d;
+				c = (c >> 1) + d;
+			}
+			else {
+				c >>= 1;
+			}
+			d >>= 2;
+		}
+	}
+	
+	return NumbersParser::numberToString(c, 10);
 }
