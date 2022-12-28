@@ -1,21 +1,21 @@
 #include "HexaNumbersParser.h"
 
-int HexaNumbersParser::findGeatestPower(long n)
+int HexaNumbersParser::findGeatestPower(long number)
 {
 	int power = 0;
-	while (n >= HexaNumbersParser::BASE)
+	while (number >= HexaNumbersParser::BASE)
 	{
 		power++;
-		n /= HexaNumbersParser::BASE;
+		number /= HexaNumbersParser::BASE;
 	}
 
 	return power;
 }
 
-long HexaNumbersParser::hexaToNumber(const char* hex)
+long HexaNumbersParser::hexToNumber(const char* hex)
 {
-	std::string s = hex;
-	int power = s.length() - 1;
+	std::string hexAsString = hex;
+	int power = hexAsString.length() - 1;
 	long number = 0;
 	int multiplier = 0;
 	while (*hex != '\0')
@@ -50,13 +50,13 @@ long HexaNumbersParser::hexaToNumber(const char* hex)
 	return number;
 }
 
-std::string HexaNumbersParser::numberToHexa(long n)
+std::string HexaNumbersParser::numberToHex(long number)
 {
 	std::string hex = "";
-	int greatestPower = findGeatestPower(n);
+	int greatestPower = findGeatestPower(number);
 
-	int multiplier = n / pow(HexaNumbersParser::BASE, greatestPower);
-	while (n / 16 >= 0 && n)
+	int multiplier = number / pow(HexaNumbersParser::BASE, greatestPower);
+	while (number / 16 >= 0 && number)
 	{
 		std::string ch = "";
 		switch (multiplier)
@@ -83,11 +83,11 @@ std::string HexaNumbersParser::numberToHexa(long n)
 		}
 		hex += ch;
 
-		long prevSum = multiplier * pow(HexaNumbersParser::BASE, greatestPower);
-		n -= prevSum;
-		prevSum = n;
+		long previousSum = multiplier * pow(HexaNumbersParser::BASE, greatestPower);
+		number -= previousSum;
+		previousSum = number;
 		greatestPower--;
-		multiplier = prevSum / pow(HexaNumbersParser::BASE, greatestPower);
+		multiplier = previousSum / pow(HexaNumbersParser::BASE, greatestPower);
 	}
 
 	return hex;

@@ -1,26 +1,26 @@
 #include "Helpers.h"
 
-int Helpers::numberSize(long n, int base)
+int Helpers::numberSize(long number, int base)
 {
-	int cnt = (n >= 0) ? 0 : 1;
-	while (n != 0)
+	int digitsCounter = (number >= 0) ? 0 : 1;
+	while (number != 0)
 	{
-		cnt++;
-		n /= base;
+		digitsCounter++;
+		number /= base;
 	}
 
-	return cnt;
+	return digitsCounter;
 }
 
-char* Helpers::toCharArray(const std::string s)
+char* Helpers::toCharArray(const std::string string)
 {
-	char* arr = new char[s.length()];
-	for (int i = 0; i < s.length(); i++)
+	char* charsArr = new char[string.length()];
+	for (size_t index = 0; index < string.length(); ++index)
 	{
-		arr[i] = s[i];
+		charsArr[index] = string[index];
 	}
 
-	arr[s.length()] = '\0';
+	charsArr[string.length()] = '\0';
 
-	return arr;
+	return charsArr;
 }

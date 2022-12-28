@@ -1,6 +1,9 @@
+#include "DecimalCalculator.h"
+#include "HexaCalculator.h"
+
 #pragma once
-#include "Number.h"
-#include "Helpers.h"
+#ifndef CALCULATOR_H
+#define CALCULATOR_H
 
 class Calculator
 {
@@ -11,3 +14,5 @@ public:
 	static std::string multiply(Number, Number);
 	static std::string sqrt(Number);
 };
+
+#endif

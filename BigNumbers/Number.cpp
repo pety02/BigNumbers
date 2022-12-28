@@ -1,45 +1,54 @@
 ﻿#include "Number.h"
 
-bool Number::isValidDecimal(std::string number)
+bool isDigit(char symbol)
 {
-	bool isValid = true;
-	for (int i = 0; i < number.length(); i++)
+	return symbol < '0' || '9' < symbol;
+}
+
+bool isHexLetter(char symbol)
+{
+	return symbol < 'A' || 'F' < symbol;
+}
+
+bool Number::isValidDecimal(std::string decimalNumberAsString)
+{
+	bool isDecimal = true;
+	for (size_t index = 0; index < decimalNumberAsString.length(); ++index)
 	{
-		if (number[i] < '0' || '9' < number[i]) 
+		if (isDigit(decimalNumberAsString[index])) 
 		{
-			isValid = false; break;
+			isDecimal = false; break;
 		}
 	}
 
-	return isValid;
+	return isDecimal;
 }
 
-bool Number::isValidHexa(std::string number)
+bool Number::isValidHex(std::string hexNumberAsString)
 {
-	bool isValid = true;
-	for (int i = 0; i < number.length(); i++)
+	bool isHex = true;
+	for (size_t index = 0; index < hexNumberAsString.length(); ++index)
 	{
-		if (!('0' <= number[i] && number[i] <= '9') && 
-			!('A' <= number[i] && number[i] <= 'F'))
+		if (!isDigit(hexNumberAsString[index]) && !isHexLetter(hexNumberAsString[index]))
 		{
-			isValid = false; break;
+			isHex = false; break;
 		}
 	}
 
-	return isValid;
+	return isHex;
 }
 
-void Number::setNumberAndNumberType(std::string number)
+void Number::setNumberAndNumberType(std::string numberAsString)
 {
-	if (isValidDecimal(number))
+	if (isValidDecimal(numberAsString))
 	{
-		this->number = number;
+		this->number = numberAsString;
 		this->type = NumberType::DECIMAL;
 		return;
 	} 
-	else if (isValidHexa(number))
+	else if (isValidHex(numberAsString))
 	{
-		this->number = number;
+		this->number = numberAsString;
 		this->type = NumberType::HEXA;
 		return;
 	}
@@ -50,27 +59,27 @@ Number::Number()
 	setNumberAndNumberType("0");
 }
 
-Number::Number(std::string number)
+Number::Number(std::string numberAsString)
 {
-	setNumberAndNumberType(number);
+	setNumberAndNumberType(numberAsString);
 }
 
-void Number::operator>>(std::istream& in)
+void Number::operator>>(std::istream& input)
 {
-	if (in.good()) 
+	if (input.good()) 
 	{
-		std::string number;
-		in >> number;
+		std::string numberAsString;
+		input >> numberAsString;
 		
-		setNumberAndNumberType(number);
+		setNumberAndNumberType(numberAsString);
 	}
 }
 
-void Number::operator <<(std::ostream& os)
+void Number::operator <<(std::ostream& output)
 {
-	if (os.good()) 
+	if (output.good()) 
 	{
-		os << this->number << '\n';
+		output << this->number << '\n';
 	}
 }
 

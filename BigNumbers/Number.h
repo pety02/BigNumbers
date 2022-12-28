@@ -1,7 +1,12 @@
+#include <fstream>
+#include <string>
+
 #include "DecimalNumbersParser.h"
 #include "HexaNumbersParser.h"
-#include <fstream>
+
 #pragma once
+#ifndef NUMBER_H
+#define NUMBER_H
 
 enum NumberType
 {
@@ -15,7 +20,7 @@ private:
 	NumberType type;
 
 	bool isValidDecimal(std::string);
-	bool isValidHexa(std::string);
+	bool isValidHex(std::string);
 	void setNumberAndNumberType(std::string);
 public:
 	Number();
@@ -26,3 +31,5 @@ public:
 	std::string getNumber();
 	NumberType getType();
 };
+
+#endif

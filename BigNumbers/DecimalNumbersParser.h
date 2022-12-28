@@ -1,7 +1,8 @@
-#pragma once
-#include <iostream>
-#include <cmath>
 #include "Helpers.h"
+
+#pragma once
+#ifndef DECIMALNUMBERSPARSER_H
+#define DECIMALNUMBERSPARSER_H
 
 class DecimalNumbersParser
 {
@@ -10,3 +11,5 @@ public:
 	static long stringToNumber(const char*);
 	static std::string numberToString(long);
 };
+
+#endif

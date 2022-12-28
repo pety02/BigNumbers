@@ -1,7 +1,8 @@
-#pragma once
-#include <iostream>
-#include <cmath>
 #include "Helpers.h"
+
+#pragma once
+#ifndef HEXANUMBERSPARSER_H
+#define HEXANUMBERSPARSER_H
 
 class HexaNumbersParser
 {
@@ -10,6 +11,8 @@ private:
 
 public:
 	static const int BASE = 16;
-	static long hexaToNumber(const char*);
-	static std::string numberToHexa(long);
+	static long hexToNumber(const char*);
+	static std::string numberToHex(long);
 };
+
+#endif

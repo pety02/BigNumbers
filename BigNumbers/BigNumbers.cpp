@@ -1,6 +1,6 @@
 #include "Number.h"
 #include "Calculator.h"
-#include <fstream>
+#include <iostream>
 
 void drawScene(Number& firstNumber, Number& secondNumber, char& operation)
 {
