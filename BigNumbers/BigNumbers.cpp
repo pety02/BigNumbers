@@ -2,13 +2,13 @@
 #include "Calculator.h"
 #include <iostream>
 
-void drawScene(Number& firstNumber, Number& secondNumber, char& operation)
+void drawScene(Number& fstNumber, Number& sndNumber, char& operation)
 {
     std::cout << "Enter two numbers: \n firstNumber: ";
-    std::istream* in = &std::cin;
-    firstNumber.operator>>(*in);
+    std::istream* input = &std::cin;
+    fstNumber.operator>>(*input);
     std::cout << "secondNumber: ";
-    secondNumber.operator>>(*in);
+    sndNumber.operator>>(*input);
     
     std::cout << std::endl << "OPERATIONS: \n\t+ add \n\t- substract \n\t* multiply \n\t" 
         << "/ devide \n\t~ sqrt \n\n Enter operation: ";
@@ -16,46 +16,46 @@ void drawScene(Number& firstNumber, Number& secondNumber, char& operation)
     std::cout << std::endl;
 }
 
-void calculate(std::string firstNumber, std::string secondNumber, const char operation)
+void calculate(std::string fstNumber, std::string sndNumber, const char operation)
 {
     std::cout << std::endl;
     switch (operation)
     {
         case '+':   
             {
-                std::cout << "\"" << firstNumber << "\" " << operation << " "
-                    << "\"" << secondNumber << "\" " << " = " << "\"" 
-                    << Calculator::add(firstNumber, secondNumber) << "\" ";
+                std::cout << "\"" << fstNumber << "\" " << operation << " "
+                    << "\"" << sndNumber << "\" " << " = " << "\"" 
+                    << Calculator::add(fstNumber, sndNumber) << "\" ";
                 break;
             }
         case '-': 
             {
-                std::cout << "\"" << firstNumber << "\" " << operation << " "
-                    << "\"" << secondNumber << "\" " << " = " << "\"" 
-                    << Calculator::substract(firstNumber, secondNumber) << "\" ";
+                std::cout << "\"" << fstNumber << "\" " << operation << " "
+                    << "\"" << sndNumber << "\" " << " = " << "\"" 
+                    << Calculator::substract(fstNumber, sndNumber) << "\" ";
                 break;
             }
         case '*': 
             {
-                std::cout << "\"" << firstNumber << "\" " << operation << " "
-                    << "\"" << secondNumber << "\" " << " = " << "\"" 
-                    << Calculator::multiply(firstNumber, secondNumber) << "\" ";
+                std::cout << "\"" << fstNumber << "\" " << operation << " "
+                    << "\"" << sndNumber << "\" " << " = " << "\"" 
+                    << Calculator::multiply(fstNumber, sndNumber) << "\" ";
                 break;
             }
         case '/': 
             {
-                long q = 0, r = 0; 
-                Calculator::devide(firstNumber, secondNumber, q, r);
-                std::cout << "\"" << firstNumber << "\" " << operation << " "
-                    << "\"" << secondNumber << "\" " << " = " << "\"" << q << "\" (" << "\"" << r << "\")";
+                std::int64_t q = 0, r = 0; 
+                Calculator::devide(fstNumber, sndNumber, q, r);
+                std::cout << "\"" << fstNumber << "\" " << operation << " "
+                    << "\"" << sndNumber << "\" " << " = " << "\"" << q << "\" (" << "\"" << r << "\")";
                 break;
             }
         case '~': 
             {
-                std::cout << operation << " \"" << firstNumber << "\"" << " = " 
-                    << "\"" << Calculator::sqrt(firstNumber) << "\"\n" 
-                    << operation << " \"" << secondNumber << "\"" << " = "
-                    << "\"" << Calculator::sqrt(secondNumber) << "\"";
+                std::cout << operation << " \"" << fstNumber << "\"" << " = " 
+                    << "\"" << Calculator::sqrt(fstNumber) << "\"\n" 
+                    << operation << " \"" << sndNumber << "\"" << " = "
+                    << "\"" << Calculator::sqrt(sndNumber) << "\"";
                 break;
             }
 
@@ -65,10 +65,18 @@ void calculate(std::string firstNumber, std::string secondNumber, const char ope
 
 int main()
 {
-    Number n1 = Number();
-    Number n2 = Number();
-    char op;
-    drawScene(n1, n2, op);
-    calculate(n1.getNumber(), n2.getNumber(), op);
+    Number fstNumber;
+    Number sndNumber;
+    char operation;
+    drawScene(fstNumber, sndNumber, operation);
+    calculate(fstNumber.getNumber(), sndNumber.getNumber(), operation);
     return 0;
 }
+
+
+/*
+
+"12456789031415" + "98765432123456789" = "98777888912488204"
+"12456789031415" * "98765432123456789" = "1230300151558439221348916026435"
+
+*/

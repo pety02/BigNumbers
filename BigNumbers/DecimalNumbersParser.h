@@ -8,8 +8,8 @@ class DecimalNumbersParser
 {
 public:
 	static const int BASE = 10;
-	static long stringToNumber(const char*);
-	static std::string numberToString(long);
+	static std::int64_t stringToDecimal(const char*);
+	static std::string DecimalToString(std::int64_t);
 };
 
 #endif

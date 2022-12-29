@@ -7,12 +7,12 @@
 class HexaNumbersParser
 {
 private:
-	static int findGeatestPower(long n);
+	static int findGeatestPower(std::int64_t n);
 
 public:
 	static const int BASE = 16;
-	static long hexToNumber(const char*);
-	static std::string numberToHex(long);
+	static std::int64_t hexToNumber(const char*);
+	static std::string numberToHex(std::int64_t);
 };
 
 #endif

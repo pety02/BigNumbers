@@ -10,7 +10,7 @@ class Calculator
 public:
 	static std::string add(Number, Number);
 	static std::string substract(Number, Number);
-	static void devide(Number, Number, long&, long&);
+	static void devide(Number, Number, std::int64_t&, std::int64_t&);
 	static std::string multiply(Number, Number);
 	static std::string sqrt(Number);
 };

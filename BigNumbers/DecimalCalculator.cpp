@@ -1,75 +1,68 @@
 #include "DecimalCalculator.h"
 
-std::string DecimalCalculator::addDecimals(Number n1, Number n2)
+std::string DecimalCalculator::addDecimals(Number fstCollectable, Number sndCollectable)
 {
-	char* number1 = Helpers::toCharArray(n1.getNumber());
-	char* number2 = Helpers::toCharArray(n2.getNumber());
+	std::int64_t firstCollectable = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(fstCollectable.getNumber()));
+	std::int64_t secondCollectable = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(sndCollectable.getNumber()));
 
-	long sum = DecimalNumbersParser::stringToNumber(number1) + DecimalNumbersParser::stringToNumber(number2);
-	return DecimalNumbersParser::numberToString(sum);
+	return DecimalNumbersParser::DecimalToString(firstCollectable + secondCollectable);
 }
 
-std::string DecimalCalculator::substractDecimnals(Number n1, Number n2)
+std::string DecimalCalculator::substractDecimnals(Number reducable, Number diminutive)
 {
-	char* number1 = Helpers::toCharArray(n1.getNumber());
-	char* number2 = Helpers::toCharArray(n2.getNumber());
+	std::int64_t _reducible = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(reducable.getNumber()));
+	std::int64_t _diminutive = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(diminutive.getNumber()));
 
-	long subs = std::abs(DecimalNumbersParser::stringToNumber(number1) - DecimalNumbersParser::stringToNumber(number2));
-	std::string res = "";
-	if (DecimalNumbersParser::stringToNumber(number1) < DecimalNumbersParser::stringToNumber(number2))
+	std::string substraction = "";
+	if (_reducible < _diminutive)
 	{
-		res += "-";
+		substraction += "-";
 	}
-	res += DecimalNumbersParser::numberToString(subs);
+	substraction += DecimalNumbersParser::DecimalToString(std::abs(_reducible - _diminutive));
 
-	return res;
+	return substraction;
 }
 
-void DecimalCalculator::devideDecimals(Number n1, Number n2, long& q, long& r)
+void DecimalCalculator::devideDecimals(Number divisible, Number divisor, std::int64_t& quotient, std::int64_t& reminder)
 {
-	char* number1 = Helpers::toCharArray(n1.getNumber());
-	char* number2 = Helpers::toCharArray(n2.getNumber());
+	std::int64_t _divisible = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(divisible.getNumber()));
+	std::int64_t _divisor = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(divisor.getNumber()));
 
-	q = DecimalNumbersParser::stringToNumber(number1) / DecimalNumbersParser::stringToNumber(number2);
-	r = DecimalNumbersParser::stringToNumber(number1) % DecimalNumbersParser::stringToNumber(number2);
+	quotient = _divisible / _divisor;
+	reminder = _divisible % _divisor;
 
 	return;
 }
 
-std::string DecimalCalculator::multiplyDecimals(Number n1, Number n2)
+std::string DecimalCalculator::multiplyDecimals(Number fstMultiplier, Number sndMultiplier)
 {
-	char* number1 = Helpers::toCharArray(n1.getNumber());
-	char* number2 = Helpers::toCharArray(n2.getNumber());
+	std::int64_t firstMultiplier = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(fstMultiplier.getNumber()));
+	std::int64_t secondMultiplier = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(sndMultiplier.getNumber()));
 
-	long pr = DecimalNumbersParser::stringToNumber(number1) * DecimalNumbersParser::stringToNumber(number2);
-	std::string res = DecimalNumbersParser::numberToString(pr);
-
-	return res;
+	return DecimalNumbersParser::DecimalToString(firstMultiplier * secondMultiplier);
 }
 
-std::string DecimalCalculator::sqrtDecimals(Number n1)
+std::string DecimalCalculator::sqrtDecimals(Number number)
 {
-	char* n = Helpers::toCharArray(n1.getNumber());
+	std::int64_t _number = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(number.getNumber()));
+	std::int64_t updatableSum = 0;
+	std::int64_t heightestPowerOfFour = 1 << 30;
 
-	long x = DecimalNumbersParser::stringToNumber(n);
-	long c = 0;
-	long d = 1 << 30;
-
-	while (d > x)
+	while (heightestPowerOfFour > _number)
 	{
-		d >>= 2;
+		heightestPowerOfFour >>= 2;
 
-		while (d != 0) {
-			if (x >= c + d) {
-				x -= c + d;
-				c = (c >> 1) + d;
+		while (heightestPowerOfFour != 0) {
+			if (_number >= updatableSum + heightestPowerOfFour) {
+				_number -= updatableSum + heightestPowerOfFour;
+				updatableSum = (updatableSum >> 1) + heightestPowerOfFour;
 			}
 			else {
-				c >>= 1;
+				updatableSum >>= 1;
 			}
-			d >>= 2;
+			heightestPowerOfFour >>= 2;
 		}
 	}
 
-	return DecimalNumbersParser::numberToString(c);
+	return DecimalNumbersParser::DecimalToString(updatableSum);
 }

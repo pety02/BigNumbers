@@ -1,6 +1,6 @@
 #include "Helpers.h"
 
-int Helpers::numberSize(long number, int base)
+int Helpers::numberSize(std::int64_t number, int base)
 {
 	int digitsCounter = (number >= 0) ? 0 : 1;
 	while (number != 0)

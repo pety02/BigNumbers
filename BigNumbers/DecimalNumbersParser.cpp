@@ -1,29 +1,31 @@
 #include "DecimalNumbersParser.h"
+#include <cstring>
 
-long DecimalNumbersParser::stringToNumber(const char* sPos)
+std::int64_t DecimalNumbersParser::stringToDecimal(const char* numberAsCharArray)
 {
-	std::string s = sPos;
-	int power = s.length() - 1;
-	long number = 0;
-	while (*sPos != '\0')
+	std::string numberAsString = numberAsCharArray;
+	int power = numberAsString.length() - 1;
+	std::int64_t number = 0;
+	while (*numberAsCharArray != '\0')
 	{
-		number += (*(sPos++) - '0') * pow(DecimalNumbersParser::BASE, power--);
+		number += (*(numberAsCharArray++) - '0') * pow(DecimalNumbersParser::BASE, power--);
 	}
 
 	return number;
 }
 
-std::string DecimalNumbersParser::numberToString(long n)
+std::string DecimalNumbersParser::DecimalToString(std::int64_t number)
 {
-	int size = Helpers::numberSize(n, DecimalNumbersParser::BASE);
-	char* s = new char[size + 1];
+	int numberSize = Helpers::numberSize(number, DecimalNumbersParser::BASE);
+	char* numberAsString = new char[numberSize + 1];
 
-	int index = size;
+	int index = numberSize;
 	while (index != 0)
 	{
-		s[--index] = (n % DecimalNumbersParser::BASE) + '0';
-		n /= DecimalNumbersParser::BASE;
+		numberAsString[--index] = (number % DecimalNumbersParser::BASE) + '0'; 
+		number /= DecimalNumbersParser::BASE;
 	}
-	s[size] = '\0';
-	return s;
+	numberAsString[numberSize] = '\0';
+
+	return numberAsString;
 }

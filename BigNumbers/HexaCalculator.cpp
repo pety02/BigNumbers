@@ -2,16 +2,16 @@
 
 std::string HexaCalculator::addHexas(Number fstCollectable, Number sndCollectable)
 {
-	long firstCollectable = HexaNumbersParser::hexToNumber(Helpers::toCharArray(fstCollectable.getNumber()));
-	long secondCollectable = HexaNumbersParser::hexToNumber(Helpers::toCharArray(sndCollectable.getNumber()));
+	std::int64_t firstCollectable = HexaNumbersParser::hexToNumber(Helpers::toCharArray(fstCollectable.getNumber()));
+	std::int64_t secondCollectable = HexaNumbersParser::hexToNumber(Helpers::toCharArray(sndCollectable.getNumber()));
 	
 	return HexaNumbersParser::numberToHex(firstCollectable + secondCollectable);
 }
 
 std::string HexaCalculator::substractHexas(Number reducible, Number diminutive)
 {
-	long _reducible = HexaNumbersParser::hexToNumber(Helpers::toCharArray(reducible.getNumber()));
-	long _diminutive = HexaNumbersParser::hexToNumber(Helpers::toCharArray(diminutive.getNumber()));
+	std::int64_t _reducible = HexaNumbersParser::hexToNumber(Helpers::toCharArray(reducible.getNumber()));
+	std::int64_t _diminutive = HexaNumbersParser::hexToNumber(Helpers::toCharArray(diminutive.getNumber()));
 
 	std::string substraction = "";
 	if (_reducible < _diminutive)
@@ -25,8 +25,8 @@ std::string HexaCalculator::substractHexas(Number reducible, Number diminutive)
 
 void HexaCalculator::devideHexas(Number deivisible, Number divisor, std::string& quotient, std::string& reminder)
 {
-	long _divisible = HexaNumbersParser::hexToNumber(Helpers::toCharArray(deivisible.getNumber()));
-	long _divisor = HexaNumbersParser::hexToNumber(Helpers::toCharArray(divisor.getNumber()));
+	std::int64_t _divisible = HexaNumbersParser::hexToNumber(Helpers::toCharArray(deivisible.getNumber()));
+	std::int64_t _divisor = HexaNumbersParser::hexToNumber(Helpers::toCharArray(divisor.getNumber()));
 
 	quotient = _divisible / _divisor;
 	reminder = _divisible % _divisor;
@@ -36,17 +36,17 @@ void HexaCalculator::devideHexas(Number deivisible, Number divisor, std::string&
 
 std::string HexaCalculator::multiplyHexas(Number fstMultiplier, Number sndMultiplier)
 {
-	long firstMultiplier = HexaNumbersParser::hexToNumber(Helpers::toCharArray(fstMultiplier.getNumber()));
-	long secondMultiplier = HexaNumbersParser::hexToNumber(Helpers::toCharArray(sndMultiplier.getNumber()));
+	std::int64_t firstMultiplier = HexaNumbersParser::hexToNumber(Helpers::toCharArray(fstMultiplier.getNumber()));
+	std::int64_t secondMultiplier = HexaNumbersParser::hexToNumber(Helpers::toCharArray(sndMultiplier.getNumber()));
 	
 	return HexaNumbersParser::numberToHex(firstMultiplier * secondMultiplier);;
 }
 
 std::string HexaCalculator::sqrtHexas(Number number)
 {
-	long _number = HexaNumbersParser::hexToNumber(Helpers::toCharArray(number.getNumber()));
-	long updatableSum = 0;
-	long heightestPowerOfFour = 1 << 30;
+	std::int64_t _number = HexaNumbersParser::hexToNumber(Helpers::toCharArray(number.getNumber()));
+	std::int64_t updatableSum = 0;
+	std::int64_t heightestPowerOfFour = 1 << 30;
 
 	while (heightestPowerOfFour > _number)
 	{

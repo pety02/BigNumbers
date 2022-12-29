@@ -1,6 +1,6 @@
 #include "HexaNumbersParser.h"
 
-int HexaNumbersParser::findGeatestPower(long number)
+int HexaNumbersParser::findGeatestPower(std::int64_t number)
 {
 	int power = 0;
 	while (number >= HexaNumbersParser::BASE)
@@ -12,11 +12,11 @@ int HexaNumbersParser::findGeatestPower(long number)
 	return power;
 }
 
-long HexaNumbersParser::hexToNumber(const char* hex)
+std::int64_t HexaNumbersParser::hexToNumber(const char* hex)
 {
 	std::string hexAsString = hex;
 	int power = hexAsString.length() - 1;
-	long number = 0;
+	std::int64_t number = 0;
 	int multiplier = 0;
 	while (*hex != '\0')
 	{
@@ -50,7 +50,7 @@ long HexaNumbersParser::hexToNumber(const char* hex)
 	return number;
 }
 
-std::string HexaNumbersParser::numberToHex(long number)
+std::string HexaNumbersParser::numberToHex(std::int64_t number)
 {
 	std::string hex = "";
 	int greatestPower = findGeatestPower(number);
@@ -83,7 +83,7 @@ std::string HexaNumbersParser::numberToHex(long number)
 		}
 		hex += ch;
 
-		long previousSum = multiplier * pow(HexaNumbersParser::BASE, greatestPower);
+		std::int64_t previousSum = multiplier * pow(HexaNumbersParser::BASE, greatestPower);
 		number -= previousSum;
 		previousSum = number;
 		greatestPower--;
