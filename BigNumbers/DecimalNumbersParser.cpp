@@ -14,7 +14,7 @@ std::int64_t DecimalNumbersParser::stringToDecimal(const char* numberAsCharArray
 	return number;
 }
 
-std::string DecimalNumbersParser::DecimalToString(std::int64_t number)
+std::string DecimalNumbersParser::decimalToString(std::int64_t number)
 {
 	int numberSize = Helpers::numberSize(number, DecimalNumbersParser::BASE);
 	char* numberAsString = new char[numberSize + 1];

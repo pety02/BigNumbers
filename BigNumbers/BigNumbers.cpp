@@ -1,7 +1,13 @@
 #include "Number.h"
 #include "Calculator.h"
-#include <iostream>
 
+/// <summary>
+/// Method that accepts as 
+/// </summary>
+/// <param name="fstNumber"> fstNumber (Number&), accepts as </param>
+/// <param name="sndNumber"> sndNumber (Number&), accepts as </param>
+/// <param name="operation"> operation (char&) and store in them 
+/// user's input from the console. </param>
 void drawScene(Number& fstNumber, Number& sndNumber, char& operation)
 {
     std::cout << "Enter two numbers: \n firstNumber: ";
@@ -16,6 +22,13 @@ void drawScene(Number& fstNumber, Number& sndNumber, char& operation)
     std::cout << std::endl;
 }
 
+/// <summary>
+/// Method that accepts as 
+/// </summary>
+/// <param name="fstNumber"> fstNumber (Number&), accepts as </param>
+/// <param name="sndNumber"> sndNumber (Number&), accepts as </param>
+/// <param name="operation"> operation (char&), 
+/// make calculation and prints the result on the console. </param>
 void calculate(std::string fstNumber, std::string sndNumber, const char operation)
 {
     std::cout << std::endl;
@@ -44,7 +57,7 @@ void calculate(std::string fstNumber, std::string sndNumber, const char operatio
             }
         case '/': 
             {
-                std::int64_t q = 0, r = 0; 
+                std::string q = "", r = ""; 
                 Calculator::devide(fstNumber, sndNumber, q, r);
                 std::cout << "\"" << fstNumber << "\" " << operation << " "
                     << "\"" << sndNumber << "\" " << " = " << "\"" << q << "\" (" << "\"" << r << "\")";
@@ -63,6 +76,7 @@ void calculate(std::string fstNumber, std::string sndNumber, const char operatio
     }
 }
 
+// TEST in main() method.
 int main()
 {
     Number fstNumber;
@@ -72,11 +86,3 @@ int main()
     calculate(fstNumber.getNumber(), sndNumber.getNumber(), operation);
     return 0;
 }
-
-
-/*
-
-"12456789031415" + "98765432123456789" = "98777888912488204"
-"12456789031415" * "98765432123456789" = "1230300151558439221348916026435"
-
-*/

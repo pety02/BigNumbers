@@ -9,7 +9,7 @@ std::string Calculator::add(Number fstCollectable, Number sndCollectable)
 
 	if (fstCollectable.getType() == NumberType::HEXA && sndCollectable.getType() == NumberType::HEXA)
 	{
-		return HexaCalculator::addHexas(fstCollectable, sndCollectable);
+		return HexCalculator::addHexes(fstCollectable, sndCollectable);
 	}
 }
 
@@ -22,11 +22,11 @@ std::string Calculator::substract(Number reducible, Number reducive)
 
 	if (reducible.getType() == NumberType::HEXA && reducive.getType() == NumberType::HEXA)
 	{
-		return HexaCalculator::substractHexas(reducible, reducive);
+		return HexCalculator::substractHexes(reducible, reducive);
 	}
 }
 
-void Calculator::devide(Number divisible, Number divisor, std::int64_t& quotient, std::int64_t& reminder)
+void Calculator::devide(Number divisible, Number divisor, std::string& quotient, std::string& reminder)
 {
 	if (divisible.getType() == NumberType::DECIMAL && divisor.getType() == NumberType::DECIMAL)
 	{
@@ -35,10 +35,7 @@ void Calculator::devide(Number divisible, Number divisor, std::int64_t& quotient
 
 	if (divisible.getType() == NumberType::HEXA && divisor.getType() == NumberType::HEXA)
 	{
-		std::string _quotient = HexaNumbersParser::numberToHex(quotient);
-		std::string _reminder = HexaNumbersParser::numberToHex(reminder);
-
-		HexaCalculator::devideHexas(divisible, divisor, _quotient, _reminder);
+		HexCalculator::devideHexes(divisible, divisor, quotient, reminder);
 	}
 }
 
@@ -51,7 +48,7 @@ std::string Calculator::multiply(Number fstMultiplier, Number sndMultiplier)
 
 	if (fstMultiplier.getType() == NumberType::HEXA && sndMultiplier.getType() == NumberType::HEXA)
 	{
-		return HexaCalculator::multiplyHexas(fstMultiplier, sndMultiplier);
+		return HexCalculator::multiplyHexes(fstMultiplier, sndMultiplier);
 	}
 }
 
@@ -64,6 +61,6 @@ std::string Calculator::sqrt(Number number)
 
 	if (number.getType() == NumberType::HEXA)
 	{
-		return HexaCalculator::sqrtHexas(number);
+		return HexCalculator::sqrtHexes(number);
 	}
 }

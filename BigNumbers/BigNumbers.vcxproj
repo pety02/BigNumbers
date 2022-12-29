@@ -143,8 +143,8 @@
     <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="DecimalCalculator.cpp" />
     <ClCompile Include="Helpers.cpp" />
-    <ClCompile Include="HexaCalculator.cpp" />
-    <ClCompile Include="HexaNumbersParser.cpp" />
+    <ClCompile Include="HexCalculator.cpp" />
+    <ClCompile Include="HexNumbersParser.cpp" />
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="DecimalNumbersParser.cpp" />
   </ItemGroup>
@@ -152,8 +152,8 @@
     <ClInclude Include="Calculator.h" />
     <ClInclude Include="DecimalCalculator.h" />
     <ClInclude Include="Helpers.h" />
-    <ClInclude Include="HexaCalculator.h" />
-    <ClInclude Include="HexaNumbersParser.h" />
+    <ClInclude Include="HexCalculator.h" />
+    <ClInclude Include="HexNumbersParser.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="DecimalNumbersParser.h" />
   </ItemGroup>

@@ -2,13 +2,13 @@
 #include "Helpers.h"
 
 #pragma once
-#ifndef DECIMALCALCULATOR_H
-#define DECIMALCALCULATOR_H
+#ifndef HEXACALCULATOR_H
+#define HEXACALCULATOR_H
 
 /// <summary>
-/// DecimalCalculator is decimal numbers calculator class.
+/// HexCalculator is hex numbers calculator class.
 /// </summary>
-class DecimalCalculator
+class HexCalculator
 {
 public:
 	/// <summary>
@@ -16,40 +16,40 @@ public:
 	/// </summary>
 	/// <param name=""> firstCollectable (Number), accepts as </param>
 	/// <param name=""> secondCollectable (Number) and </param>
-	/// <returns> their sum as decimal number (std::string). </returns>
-	static std::string addDecimals(Number, Number);
+	/// <returns> their sum as hex number (std::string). </returns>
+	static std::string addHexes(Number, Number);
 	
 	/// <summary>
 	/// Method that accepts as
 	/// </summary>
 	/// <param name=""> redusable (Number), accepts as </param>
 	/// <param name=""> reducive (Number) and </param>
-	/// <returns> their substraction as decimal number (std::string). </returns>
-	static std::string substractDecimnals(Number, Number);
+	/// <returns> their substraction as hex number (std::string). </returns>
+	static std::string substractHexes(Number, Number);
 	
 	/// <summary>
 	/// Method that accepts as
 	/// </summary>
 	/// <param name=""> divisible (Number), accepts as </param>
 	/// <param name=""> divisor (Number) and </param>
-	/// <returns> their quotion as decimal number (std::string) 
-	/// and reminder as decimal number (std::string). </returns>
-	static void devideDecimals(Number, Number, std::string&, std::string&);
+	/// <returns> their quotion as hex number (std::string) 
+	/// and reminder as hex number (std::string). </returns>
+	static void devideHexes(Number, Number, std::string&, std::string&);
 	
 	/// <summary>
 	/// Method that accepts as
 	/// </summary>
 	/// <param name=""> firstMultiplier (Number), accepts as </param>
 	/// <param name=""> secondMultiplier (Number) and </param>
-	/// <returns> their product as decimal number (std::string). </returns>
-	static std::string multiplyDecimals(Number, Number);
+	/// <returns> their product as hex number (std::string). </returns>
+	static std::string multiplyHexes(Number, Number);
 	
 	/// <summary>
 	/// Method that accepts as
 	/// </summary>
 	/// <param name=""> number (Number) and </param>
-	/// <returns> its square root as decimal number (std::string). </returns>
-	static std::string sqrtDecimals(Number);
+	/// <returns> its square root as hex number (std::string). </returns>
+	static std::string sqrtHexes(Number);
 };
 
 #endif

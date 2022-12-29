@@ -27,16 +27,16 @@
     <ClCompile Include="Calculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HexaNumbersParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Helpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DecimalCalculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HexaCalculator.cpp">
+    <ClCompile Include="HexNumbersParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HexCalculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,16 +50,16 @@
     <ClInclude Include="Calculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HexaNumbersParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DecimalCalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HexaCalculator.h">
+    <ClInclude Include="HexNumbersParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HexCalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

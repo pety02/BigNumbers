@@ -5,7 +5,7 @@ std::string DecimalCalculator::addDecimals(Number fstCollectable, Number sndColl
 	std::int64_t firstCollectable = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(fstCollectable.getNumber()));
 	std::int64_t secondCollectable = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(sndCollectable.getNumber()));
 
-	return DecimalNumbersParser::DecimalToString(firstCollectable + secondCollectable);
+	return DecimalNumbersParser::decimalToString(firstCollectable + secondCollectable);
 }
 
 std::string DecimalCalculator::substractDecimnals(Number reducable, Number diminutive)
@@ -18,18 +18,18 @@ std::string DecimalCalculator::substractDecimnals(Number reducable, Number dimin
 	{
 		substraction += "-";
 	}
-	substraction += DecimalNumbersParser::DecimalToString(std::abs(_reducible - _diminutive));
+	substraction += DecimalNumbersParser::decimalToString(std::abs(_reducible - _diminutive));
 
 	return substraction;
 }
 
-void DecimalCalculator::devideDecimals(Number divisible, Number divisor, std::int64_t& quotient, std::int64_t& reminder)
+void DecimalCalculator::devideDecimals(Number divisible, Number divisor, std::string& quotient, std::string& reminder)
 {
 	std::int64_t _divisible = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(divisible.getNumber()));
 	std::int64_t _divisor = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(divisor.getNumber()));
 
-	quotient = _divisible / _divisor;
-	reminder = _divisible % _divisor;
+	quotient = DecimalNumbersParser::decimalToString(_divisible / _divisor);
+	reminder = (_divisible % _divisor != 0) ? DecimalNumbersParser::decimalToString(_divisible % _divisor) : "0";
 
 	return;
 }
@@ -39,7 +39,7 @@ std::string DecimalCalculator::multiplyDecimals(Number fstMultiplier, Number snd
 	std::int64_t firstMultiplier = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(fstMultiplier.getNumber()));
 	std::int64_t secondMultiplier = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(sndMultiplier.getNumber()));
 
-	return DecimalNumbersParser::DecimalToString(firstMultiplier * secondMultiplier);
+	return DecimalNumbersParser::decimalToString(firstMultiplier * secondMultiplier);
 }
 
 std::string DecimalCalculator::sqrtDecimals(Number number)
@@ -64,5 +64,5 @@ std::string DecimalCalculator::sqrtDecimals(Number number)
 		}
 	}
 
-	return DecimalNumbersParser::DecimalToString(updatableSum);
+	return DecimalNumbersParser::decimalToString(updatableSum);
 }
