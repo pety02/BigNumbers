@@ -24,19 +24,13 @@
     <ClCompile Include="DecimalNumbersParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Calculator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Helpers.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DecimalCalculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HexNumbersParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HexCalculator.cpp">
+    <ClCompile Include="InputValidator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,19 +41,13 @@
     <ClInclude Include="DecimalNumbersParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Calculator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Helpers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DecimalCalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HexNumbersParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HexCalculator.h">
+    <ClInclude Include="InputValidator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

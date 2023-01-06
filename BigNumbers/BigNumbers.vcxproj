@@ -140,20 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BigNumbers.cpp" />
-    <ClCompile Include="Calculator.cpp" />
-    <ClCompile Include="DecimalCalculator.cpp" />
     <ClCompile Include="Helpers.cpp" />
-    <ClCompile Include="HexCalculator.cpp" />
     <ClCompile Include="HexNumbersParser.cpp" />
+    <ClCompile Include="InputValidator.cpp" />
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="DecimalNumbersParser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Calculator.h" />
-    <ClInclude Include="DecimalCalculator.h" />
     <ClInclude Include="Helpers.h" />
-    <ClInclude Include="HexCalculator.h" />
     <ClInclude Include="HexNumbersParser.h" />
+    <ClInclude Include="InputValidator.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="DecimalNumbersParser.h" />
   </ItemGroup>
