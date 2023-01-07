@@ -1,6 +1,6 @@
-#include "Number.h"
+#include "BigNumber.h"
 
-void drawScene(Number& fstNumber, char& operation, Number& sndNumber)
+void drawScene(BigNumber& fstNumber, char& operation, BigNumber& sndNumber)
 {
     std::istream* input = &std::cin;
 
@@ -8,7 +8,7 @@ void drawScene(Number& fstNumber, char& operation, Number& sndNumber)
     fstNumber >> *input;
 
     std::cout << std::endl << "OPERATIONS: \n\t+ add \n\t- substract \n\t* multiply \n\t"
-        << "/ devide \n\t% divide by module \n\t~ square root \n\n Enter operation: ";
+        << "/ devide \n\t% divide by module \n\t~ square root \n\nEnter operation: ";
     std::cin >> operation;
     std::cout << std::endl;
 
@@ -19,13 +19,13 @@ void drawScene(Number& fstNumber, char& operation, Number& sndNumber)
     } 
 }
 
-void printNumbersOperation(Number fstNumber, Number sndNumber, const char operation)
+void printNumbersOperation(BigNumber fstNumber, BigNumber sndNumber, const char operation)
 {
     std::cout << "\"" << fstNumber.getNumber() << "\" " << operation << " "
         << "\"" << sndNumber.getNumber() << "\"" << " = " << "\"";
 }
 
-void calculate(Number fstNumber, Number sndNumber, const char operation)
+void calculate(BigNumber fstNumber, BigNumber sndNumber, const char operation)
 {
     std::cout << std::endl;
     try
@@ -36,60 +36,64 @@ void calculate(Number fstNumber, Number sndNumber, const char operation)
             {
                 
                 printNumbersOperation(fstNumber, sndNumber, operation);
-                Number sum = fstNumber + sndNumber;
-                std::cout << sum.getNumber() << "\" ";
+                BigNumber sum = fstNumber + sndNumber;
+                std::cout << sum.getNumber() << "\"" << std::endl;
                 break;
             }
             case '-': 
             {
                 printNumbersOperation(fstNumber, sndNumber, operation);
-                Number substraction = fstNumber - sndNumber;
-                std::cout << substraction.getNumber() << "\" ";
+                BigNumber substraction = fstNumber - sndNumber;
+                std::cout << substraction.getNumber() << "\"" << std::endl;
                 break;
             }
             case '*': 
             {
                printNumbersOperation(fstNumber, sndNumber, operation);
-               Number product = fstNumber * sndNumber;
-               std::cout << product.getNumber() << "\" ";
+               BigNumber product = fstNumber * sndNumber;
+               std::cout << product.getNumber() << "\"" << std::endl;
                break;
             }
             case '/': 
             {
                 printNumbersOperation(fstNumber, sndNumber, operation);
-                Number quotient = fstNumber / sndNumber;
-                std::cout << quotient.getNumber() << "\" ";
+                BigNumber quotient = fstNumber / sndNumber;
+                std::cout << quotient.getNumber() << "\"" << std::endl;
                 break;
             }
             case '%':
             {
                 printNumbersOperation(fstNumber, sndNumber, operation);
-                Number reminder;
-                Number quotient = fstNumber.mod(sndNumber, reminder);
-                std::cout << quotient.getNumber() << "\" " << " (\"" << reminder.getNumber() << "\")";
+                BigNumber reminder;
+                BigNumber quotient = fstNumber.mod(sndNumber, reminder);
+                std::cout << quotient.getNumber() << "\" " << " (\"" << reminder.getNumber() << "\")" << std::endl;
                 break;
             }
             case '~': 
             {
                 std::cout << operation << "\"" << fstNumber.getNumber() << "\"" << " = " << "\"";
-                Number squareRoot = fstNumber.sqrt();
-                std::cout << squareRoot.getNumber() << "\"";
+                BigNumber squareRoot = fstNumber.sqrt();
+                std::cout << squareRoot.getNumber() << "\"" << std::endl;
                 break;
             }
 
-            default: break;
+            default: throw "No such operation support!";
         }
     }
-    catch (std::invalid_argument ex)
+    catch (std::invalid_argument invalidArgumentEx)
     {
-        std::cout << ex.what();
+        std::cout << invalidArgumentEx.what() << std::endl;
+    }
+    catch (const char* messageEx)
+    {
+        std::cout << messageEx << std::endl;
     }
 }
 
 int main()
 {
-    Number fstNumber;
-    Number sndNumber;
+    BigNumber fstNumber;
+    BigNumber sndNumber;
     char operation;
     drawScene(fstNumber, operation, sndNumber);
     calculate(fstNumber, sndNumber, operation);

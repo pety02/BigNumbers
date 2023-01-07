@@ -1,6 +1,6 @@
-﻿#include "Number.h"
+﻿#include "BigNumber.h"
 
-void Number::setNumberAndNumberType(std::string numberAsString = "0")
+void BigNumber::setNumberAndNumberType(std::string numberAsString = "0")
 {
 	try
 	{
@@ -27,17 +27,17 @@ void Number::setNumberAndNumberType(std::string numberAsString = "0")
 	}
 }
 
-Number::Number()
+BigNumber::BigNumber()
 {
 	setNumberAndNumberType();
 }
 
-Number::Number(std::string numberAsString)
+BigNumber::BigNumber(std::string numberAsString)
 {
 	setNumberAndNumberType(numberAsString);
 }
 
-void Number::operator>>(std::istream& input)
+void BigNumber::operator>>(std::istream& input)
 {
 	if (input.good()) 
 	{
@@ -48,7 +48,7 @@ void Number::operator>>(std::istream& input)
 	}
 }
 
-void Number::operator <<(std::ostream& output)
+void BigNumber::operator <<(std::ostream& output)
 {
 	if (output.good()) 
 	{
@@ -56,14 +56,24 @@ void Number::operator <<(std::ostream& output)
 	}
 }
 
-const Number Number::operator+(Number& sndCollectable) const
+BigNumber& BigNumber::operator=(const BigNumber& otherNumber)
+{
+	if (this != nullptr) 
+	{
+		setNumberAndNumberType(otherNumber.number);
+	}
+
+	return *this;
+}
+
+const BigNumber BigNumber::operator+(BigNumber& sndCollectable) const
 {
 	if (type == NumberType::DECIMAL && sndCollectable.getType() == NumberType::DECIMAL)
 	{
 		std::int64_t firstCollectable = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(number));
 		std::int64_t secondCollectable = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(sndCollectable.getNumber()));
 
-		Number sum = Number(DecimalNumbersParser::decimalToString(firstCollectable + secondCollectable));
+		BigNumber sum = BigNumber(DecimalNumbersParser::decimalToString(firstCollectable + secondCollectable));
 		return sum;
 	}
 
@@ -74,14 +84,14 @@ const Number Number::operator+(Number& sndCollectable) const
 		std::int64_t firstCollectable = HexNumbersParser::hexToDecimal(Helpers::toCharArray(number));
 		std::int64_t secondCollectable = HexNumbersParser::hexToDecimal(Helpers::toCharArray(sndCollectable.getNumber()));
 
-		Number sum = Number(HexNumbersParser::decimalToHex(firstCollectable + secondCollectable));
+		BigNumber sum = BigNumber(HexNumbersParser::decimalToHex(firstCollectable + secondCollectable));
 		return sum;
 	}
 
 	throw std::invalid_argument("Invalid collectables!");
 }
 
-const Number Number::operator-(Number& diminutive) const
+const BigNumber BigNumber::operator-(BigNumber& diminutive) const
 {
 	if (type == NumberType::DECIMAL && diminutive.getType() == NumberType::DECIMAL)
 	{
@@ -95,7 +105,7 @@ const Number Number::operator-(Number& diminutive) const
 		}
 		substraction += DecimalNumbersParser::decimalToString(std::abs(_reducive - _diminutive));
 
-		return Number(substraction);
+		return BigNumber(substraction);
 	}
 
 	if ((type == NumberType::DECIMAL && diminutive.getType() == NumberType::HEX)
@@ -112,20 +122,20 @@ const Number Number::operator-(Number& diminutive) const
 		}
 		substraction += HexNumbersParser::decimalToHex(std::abs(_reducive - _diminutive));
 
-		return Number(substraction);
+		return BigNumber(substraction);
 	}
 
 	throw std::invalid_argument("Invalid reducive and diminutive!");
 }
 
-const Number Number::operator*(Number& sndMultiplier) const
+const BigNumber BigNumber::operator*(BigNumber& sndMultiplier) const
 {
 	if (type == NumberType::DECIMAL && sndMultiplier.getType() == NumberType::DECIMAL)
 	{
 		std::int64_t firstMultiplier = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(number));
 		std::int64_t secondMultiplier = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(sndMultiplier.getNumber()));
 
-		return Number(DecimalNumbersParser::decimalToString(firstMultiplier * secondMultiplier));
+		return BigNumber(DecimalNumbersParser::decimalToString(firstMultiplier * secondMultiplier));
 	}
 
 	if ((type == NumberType::DECIMAL && sndMultiplier.getType() == NumberType::HEX)
@@ -135,20 +145,20 @@ const Number Number::operator*(Number& sndMultiplier) const
 		std::int64_t firstMultiplier = HexNumbersParser::hexToDecimal(Helpers::toCharArray(number));
 		std::int64_t secondMultiplier = HexNumbersParser::hexToDecimal(Helpers::toCharArray(sndMultiplier.getNumber()));
 
-		return Number(HexNumbersParser::decimalToHex(firstMultiplier * secondMultiplier));
+		return BigNumber(HexNumbersParser::decimalToHex(firstMultiplier * secondMultiplier));
 	}
 
 	throw std::invalid_argument("Invalid multipliers!");
 }
 
-const Number Number::operator/(Number& divisor) const
+const BigNumber BigNumber::operator/(BigNumber& divisor) const
 {
 	if (type == NumberType::DECIMAL && divisor.getType() == NumberType::DECIMAL)
 	{
 		std::int64_t _divisible = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(number));
 		std::int64_t _divisor = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(divisor.getNumber()));
 
-		return Number(DecimalNumbersParser::decimalToString(_divisible / _divisor));
+		return BigNumber(DecimalNumbersParser::decimalToString(_divisible / _divisor));
 	}
 
 	if ((type == NumberType::DECIMAL && divisor.getType() == NumberType::HEX)
@@ -158,22 +168,22 @@ const Number Number::operator/(Number& divisor) const
 		std::int64_t _divisible = HexNumbersParser::hexToDecimal(Helpers::toCharArray(number));
 		std::int64_t _divisor = HexNumbersParser::hexToDecimal(Helpers::toCharArray(divisor.getNumber()));
 
-		return Number(HexNumbersParser::decimalToHex(_divisible / _divisor));
+		return BigNumber(HexNumbersParser::decimalToHex(_divisible / _divisor));
 	}
 
 	throw std::invalid_argument("Invalid divisible and divisor!");
 }
 
-const Number Number::mod(Number& divisor, Number& reminder) const
+const BigNumber BigNumber::mod(BigNumber& divisor, BigNumber& reminder) const
 {
 	if (type == NumberType::DECIMAL && divisor.getType() == NumberType::DECIMAL)
 	{
 		std::int64_t _divisible = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(number));
 		std::int64_t _divisor = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(divisor.getNumber()));
 
-		reminder = (_divisible % _divisor != 0) ? Number(DecimalNumbersParser::decimalToString(_divisible % _divisor)) 
-			: Number();
-		return Number(DecimalNumbersParser::decimalToString(_divisible / _divisor));
+		reminder = (_divisible % _divisor != 0) ? BigNumber(DecimalNumbersParser::decimalToString(_divisible % _divisor))
+			: BigNumber();
+		return BigNumber(DecimalNumbersParser::decimalToString(_divisible / _divisor));
 	}
 
 	if ((type == NumberType::DECIMAL && divisor.getType() == NumberType::HEX)
@@ -183,15 +193,15 @@ const Number Number::mod(Number& divisor, Number& reminder) const
 		std::int64_t _divisible = HexNumbersParser::hexToDecimal(Helpers::toCharArray(number));
 		std::int64_t _divisor = HexNumbersParser::hexToDecimal(Helpers::toCharArray(divisor.getNumber()));
 
-		reminder = (_divisible % _divisor != 0) ? Number(HexNumbersParser::decimalToHex(_divisible % _divisor)) 
-			: Number();
-		return Number(HexNumbersParser::decimalToHex(_divisible / _divisor));
+		reminder = (_divisible % _divisor != 0) ? BigNumber(HexNumbersParser::decimalToHex(_divisible % _divisor))
+			: BigNumber();
+		return BigNumber(HexNumbersParser::decimalToHex(_divisible / _divisor));
 	}
 
 	throw std::invalid_argument("Invalid divisible and divisor!");
 }
 
-const Number Number::sqrt() const
+const BigNumber BigNumber::sqrt() const
 {
 	if (type == NumberType::DECIMAL)
 	{
@@ -215,7 +225,7 @@ const Number Number::sqrt() const
 			}
 		}
 
-		return Number(DecimalNumbersParser::decimalToString(updatableSum));
+		return BigNumber(DecimalNumbersParser::decimalToString(updatableSum));
 	}
 
 	if (type == NumberType::HEX)
@@ -240,18 +250,18 @@ const Number Number::sqrt() const
 			}
 		}
 
-		return Number(HexNumbersParser::decimalToHex(updatableSum));
+		return BigNumber(HexNumbersParser::decimalToHex(updatableSum));
 	}
 
 	throw std::invalid_argument("Invalid number to be square rooted!");
 }
 
-std::string Number::getNumber() 
+std::string BigNumber::getNumber()
 {
 	return this->number;
 }
 
-NumberType Number::getType() 
+NumberType BigNumber::getType()
 {
 	return this->type;
 }

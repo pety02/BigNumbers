@@ -6,8 +6,7 @@
 
 class InputValidator
 {
-public:
-	
+public:	
 	static bool isDigit(char symbol);
 
 	static bool isHexLetter(char symbol);
