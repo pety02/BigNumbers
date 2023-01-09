@@ -1,6 +1,6 @@
 ﻿#include "BigNumber.h"
 
-void BigNumber::setNumberTypeAndBase(std::string numberAsString)
+void BigNumber::setNumberAndBase(std::string numberAsString)
 {
 	try
 	{
@@ -27,8 +27,8 @@ void BigNumber::setNumberTypeAndBase(std::string numberAsString)
 	}
 }
 
-char BigNumber::getSymbol(int num) {
-	switch (num) {
+char BigNumber::getSymbol(int number) {
+	switch (number) {
 	case 0: return '0';
 	case 1: return '1';
 	case 2: return '2';
@@ -75,9 +75,9 @@ int BigNumber::getValue(char ch) {
 	}
 }
 
-bool BigNumber::isSmaller(std::string fstNumberString, std::string sndNumberString)
+bool BigNumber::isSmaller(std::string sndNumberString)
 {
-	int fstNumberLength = fstNumberString.length(),
+	int fstNumberLength = number.length(),
 		sndNumberLength = sndNumberString.length();
 
 	if (fstNumberLength < sndNumberLength) {
@@ -88,10 +88,10 @@ bool BigNumber::isSmaller(std::string fstNumberString, std::string sndNumberStri
 	}
 
 	for (size_t fstNumberIndex = 0; fstNumberIndex < fstNumberLength; fstNumberIndex++) {
-		if (fstNumberString[fstNumberIndex] < sndNumberString[fstNumberIndex]) {
+		if (number[fstNumberIndex] < sndNumberString[fstNumberIndex]) {
 			return true;
 		}
-		else if (fstNumberString[fstNumberIndex] > sndNumberString[fstNumberIndex]) {
+		else if (number[fstNumberIndex] > sndNumberString[fstNumberIndex]) {
 			return false;
 		}
 	}
@@ -99,13 +99,13 @@ bool BigNumber::isSmaller(std::string fstNumberString, std::string sndNumberStri
 	return false;
 }
 
-bool BigNumber::areSame(std::string str1, std::string str2) {
+bool BigNumber::areSame(std::string str2) {
 	bool areIdentical = true;
-	if (str1.length() != str2.length()) {
+	if (number.length() != str2.length()) {
 		areIdentical = false;
 	}
-	for (int i = 0; i < str1.length(); i++) {
-		if (str1[i] != str2[i]) {
+	for (int i = 0; i < number.length(); i++) {
+		if (number[i] != str2[i]) {
 			areIdentical = false;
 			break;
 		}
@@ -130,12 +130,12 @@ int BigNumber::hexToDecimal(std::string hex)
 
 BigNumber::BigNumber()
 {
-	setNumberTypeAndBase("0");
+	setNumberAndBase("0");
 }
 
 BigNumber::BigNumber(std::string numberAsString)
 {
-	setNumberTypeAndBase(numberAsString);
+	setNumberAndBase(numberAsString);
 }
 
 void BigNumber::operator>>(std::istream& input)
@@ -145,7 +145,7 @@ void BigNumber::operator>>(std::istream& input)
 		std::string numberAsString;
 		input >> numberAsString;
 		
-		setNumberTypeAndBase(numberAsString);
+		setNumberAndBase(numberAsString);
 	}
 }
 
@@ -161,7 +161,7 @@ BigNumber& BigNumber::operator=(const BigNumber& otherNumber)
 {
 	if (this != nullptr) 
 	{
-		setNumberTypeAndBase(otherNumber.number);
+		setNumberAndBase(otherNumber.number);
 	}
 
 	return *this;
@@ -212,7 +212,7 @@ BigNumber& BigNumber::operator-(BigNumber& diminutive)
 	std::string difference = "";
 	std::string _reducible = number, _diminutive = diminutive.getNumber();
 
-	if (isSmaller(_reducible, _diminutive)) {
+	if (this->isSmaller(_diminutive)) {
 		swap(_reducible, _diminutive);
 	}
 
@@ -251,7 +251,7 @@ BigNumber& BigNumber::operator-(BigNumber& diminutive)
 	std::reverse(difference.begin(), difference.end());
 
 	int zeroesCounter = 0, firstNonZeroDigitIndex = -1;
-	if (areSame(_reducible, _diminutive)) {
+	if (this->areSame(_diminutive)) {
 		*this = BigNumber();
 	}
 
@@ -360,8 +360,8 @@ BigNumber& BigNumber::operator/(BigNumber& divisor)
 	BigNumber currentDivisor = BigNumber(_divisor);
 
 	BigNumber diff = currentDivisible;
-	while (!(isSmaller(diff.getNumber(), currentDivisor.getNumber()) 
-		|| areSame(diff.getNumber(), currentDivisor.getNumber()))) {
+	while (!diff.isSmaller(currentDivisor.getNumber()) 
+		|| diff.areSame(currentDivisor.getNumber())) {
 		diff = diff - currentDivisor;
 		quotient++;
 	}

@@ -101,15 +101,15 @@ int main()
     drawScene(fstNumber, operation, sndNumber);
     calculate(fstNumber, sndNumber, operation);
     
-    /*std::string n1("9");
-    std::string n2("2");
+    /*std::string n1(20, '9');
+    std::string n2(30, '5');
     BigNumber num1 = BigNumber(n1);
     BigNumber n = BigNumber(n1);
     BigNumber num2 = BigNumber(n2);
     BigNumber reminder;
     
-    //BigNumber sum = num1 * num2;
-    BigNumber sum = num1.mod(std::stoi(num2.getNumber()));
+    //BigNumber sum = num1 + num2;
+    //BigNumber sum = num1.mod(std::stoi(num2.getNumber()));
     std::cout << sum.getNumber();*/
     
     return 0;
