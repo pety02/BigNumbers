@@ -1,4 +1,7 @@
+#include<string>
+#include <vector>
 #include <fstream>
+#include <iostream>
 
 #include "DecimalNumbersParser.h"
 #include "HexNumbersParser.h"
@@ -18,10 +21,18 @@ class BigNumber
 {
 private:
 	std::string number;
-
 	NumberType type;
+	int base;
 
-	void setNumberAndNumberType(std::string);
+	void setNumberTypeAndBase(std::string);
+
+	char getSymbol(int);
+
+	int getValue(char);
+
+	bool isSmaller(std::string, std::string);
+
+	bool areSame(std::string, std::string);
 
 public:
 	BigNumber();
@@ -36,21 +47,23 @@ public:
 
 	BigNumber& operator=(const BigNumber& otherNumber);
 
-	const BigNumber operator+(BigNumber&) const;
+	BigNumber& operator+(BigNumber&);
 
-	const BigNumber operator-(BigNumber&) const;
+	BigNumber& operator-(BigNumber&);
 
-	const BigNumber operator*(BigNumber&) const;
+	BigNumber& operator*(BigNumber&);
 
-	const BigNumber operator/(BigNumber&) const;
+	BigNumber& operator/(BigNumber&);
 
 	const BigNumber mod(BigNumber&, BigNumber&) const;
 
 	const BigNumber sqrt() const;
 
-	std::string getNumber();
+	const std::string getNumber() const;
 
-	NumberType getType();
+	const NumberType getType() const;
+
+	const int getBase() const;
 };
 
 #endif

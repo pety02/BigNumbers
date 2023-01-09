@@ -61,7 +61,7 @@ void calculate(BigNumber fstNumber, BigNumber sndNumber, const char operation)
                 std::cout << quotient.getNumber() << "\"" << std::endl;
                 break;
             }
-            case '%':
+            /*case '%':
             {
                 printNumbersOperation(fstNumber, sndNumber, operation);
                 BigNumber reminder;
@@ -75,7 +75,7 @@ void calculate(BigNumber fstNumber, BigNumber sndNumber, const char operation)
                 BigNumber squareRoot = fstNumber.sqrt();
                 std::cout << squareRoot.getNumber() << "\"" << std::endl;
                 break;
-            }
+            }*/
 
             default: throw "No such operation support!";
         }
@@ -97,5 +97,13 @@ int main()
     char operation;
     drawScene(fstNumber, operation, sndNumber);
     calculate(fstNumber, sndNumber, operation);
+    
+    /*std::string n1("22");
+    std::string n2("5");
+    BigNumber num1 = BigNumber(n1);
+    BigNumber num2 = BigNumber(n2);
+    BigNumber sum = num1.operator/(num2);
+    std::cout << sum.getNumber();*/
+    
     return 0;
 }
