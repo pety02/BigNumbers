@@ -141,17 +141,13 @@
   <ItemGroup>
     <ClCompile Include="BigNumbersTest.cpp" />
     <ClCompile Include="Helpers.cpp" />
-    <ClCompile Include="HexNumbersParser.cpp" />
     <ClCompile Include="InputValidator.cpp" />
     <ClCompile Include="BigNumber.cpp" />
-    <ClCompile Include="DecimalNumbersParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Helpers.h" />
-    <ClInclude Include="HexNumbersParser.h" />
     <ClInclude Include="InputValidator.h" />
     <ClInclude Include="BigNumber.h" />
-    <ClInclude Include="DecimalNumbersParser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,7 +8,7 @@ void drawScene(BigNumber& fstNumber, char& operation, BigNumber& sndNumber)
     fstNumber >> *input;
 
     std::cout << std::endl << "OPERATIONS: \n\t+ add \n\t- substract \n\t* multiply \n\t"
-        << "/ devide \n\t% divide by module \n\t~ square root \n\nEnter operation: ";
+        << "/ devide \n\t% divide by module \n\nEnter operation: ";
     std::cin >> operation;
     std::cout << std::endl;
 
@@ -61,21 +61,16 @@ void calculate(BigNumber fstNumber, BigNumber sndNumber, const char operation)
                 std::cout << quotient.getNumber() << "\"" << std::endl;
                 break;
             }
-            /*case '%':
+            case '%':
             {
                 printNumbersOperation(fstNumber, sndNumber, operation);
-                BigNumber reminder;
-                BigNumber quotient = fstNumber.mod(sndNumber, reminder);
-                std::cout << quotient.getNumber() << "\" " << " (\"" << reminder.getNumber() << "\")" << std::endl;
+                BigNumber quotient = (sndNumber.getBase() == 16) ? 
+                    fstNumber.mod(fstNumber.hexToDecimal(sndNumber.getNumber())) 
+                    : fstNumber.mod(std::stoi(sndNumber.getNumber()));
+
+                std::cout << quotient.getNumber() << "\"" << std::endl;
                 break;
             }
-            case '~': 
-            {
-                std::cout << operation << "\"" << fstNumber.getNumber() << "\"" << " = " << "\"";
-                BigNumber squareRoot = fstNumber.sqrt();
-                std::cout << squareRoot.getNumber() << "\"" << std::endl;
-                break;
-            }*/
 
             default: throw "No such operation support!";
         }
@@ -88,6 +83,14 @@ void calculate(BigNumber fstNumber, BigNumber sndNumber, const char operation)
     {
         std::cout << messageEx << std::endl;
     }
+    catch (std::exception ex)
+    {
+        std::cout << ex.what() << std::endl;
+    }
+    catch (...)
+    {
+        std::cout << "Unknown exception occure!" << std::endl;
+    }
 }
 
 int main()
@@ -98,11 +101,15 @@ int main()
     drawScene(fstNumber, operation, sndNumber);
     calculate(fstNumber, sndNumber, operation);
     
-    /*std::string n1("22");
-    std::string n2("5");
+    /*std::string n1("9");
+    std::string n2("2");
     BigNumber num1 = BigNumber(n1);
+    BigNumber n = BigNumber(n1);
     BigNumber num2 = BigNumber(n2);
-    BigNumber sum = num1.operator/(num2);
+    BigNumber reminder;
+    
+    //BigNumber sum = num1 * num2;
+    BigNumber sum = num1.mod(std::stoi(num2.getNumber()));
     std::cout << sum.getNumber();*/
     
     return 0;

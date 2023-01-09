@@ -7,7 +7,6 @@ void BigNumber::setNumberTypeAndBase(std::string numberAsString)
 		if (InputValidator::isValidDecimal(numberAsString))
 		{
 			number = numberAsString;
-			type = NumberType::DECIMAL;
 			base = 10;
 			return;
 		}
@@ -15,7 +14,6 @@ void BigNumber::setNumberTypeAndBase(std::string numberAsString)
 		if (InputValidator::isValidHex(numberAsString))
 		{
 			number = numberAsString;
-			type = NumberType::HEX;
 			base = 16;
 			return;
 		}
@@ -25,7 +23,6 @@ void BigNumber::setNumberTypeAndBase(std::string numberAsString)
 	catch (std::invalid_argument)
 	{
 		number = "0";
-		type = NumberType::DECIMAL;
 		base = 10;
 	}
 }
@@ -117,6 +114,20 @@ bool BigNumber::areSame(std::string str1, std::string str2) {
 	return areIdentical;
 }
 
+int BigNumber::hexToDecimal(std::string hex)
+{
+	int power = hex.length() - 1;
+	std::int64_t number = 0;
+	int multiplier = 0;
+	for (size_t index = 0; index < hex.length(); index++)
+	{
+		multiplier = getValue(hex[index]);
+		number += multiplier * pow(16, power--);
+	}
+
+	return number;
+}
+
 BigNumber::BigNumber()
 {
 	setNumberTypeAndBase("0");
@@ -176,8 +187,6 @@ BigNumber& BigNumber::operator+(BigNumber& sndCollectable)
 		currentSum = getValue(smallerCollectable[smallerCollectableIndex]) 
 			+ getValue(largerCollectable[smallerCollectableIndex]) + holder;
 		sum.push_back(getSymbol(currentSum % base));
-		std::cout << getValue(smallerCollectable[smallerCollectableIndex]);
-		std::cout << getValue(largerCollectable[smallerCollectableIndex]);
 		holder = currentSum / base;
 	}
 
@@ -210,14 +219,12 @@ BigNumber& BigNumber::operator-(BigNumber& diminutive)
 	int reducibleLength = _reducible.length(), diminutiveLength = _diminutive.length();
 	int lengthDifference = reducibleLength - diminutiveLength;
 
-	//std::reverse(_reducible.begin(), _reducible.end());
-	//std::reverse(_diminutive.begin(), _diminutive.end());
-
 	int holder = 0, currentDiff = 0;
-	for (size_t diminutiveLengthIndex = 0; diminutiveLengthIndex < diminutiveLength; diminutiveLengthIndex++) {
+	
+	for (int reducibleIndex = diminutiveLength - 1; reducibleIndex >= 0; reducibleIndex--) {
 
-		currentDiff = (getValue(_reducible[diminutiveLengthIndex + lengthDifference]) 
-			- getValue(_diminutive[diminutiveLengthIndex]) - holder);
+		currentDiff = (getValue(_reducible[reducibleIndex + lengthDifference]) 
+			- getValue(_diminutive[reducibleIndex]) - holder);
 		if (currentDiff < 0) {
 			currentDiff = currentDiff + base;
 			holder = 1;
@@ -230,13 +237,14 @@ BigNumber& BigNumber::operator-(BigNumber& diminutive)
 	}
 
 	for (int reducibleIndex = reducibleLength - diminutiveLength - 1; reducibleIndex >= 0; reducibleIndex--) {
-		if (_reducible[reducibleIndex] == '0' && holder) {
-			difference.push_back(getSymbol(base - 1));
+		if (_reducible[reducibleIndex] == getSymbol(0) && holder) {
+			difference.push_back(getValue(base - 1));
 			continue;
 		}
-		currentDiff = (getValue(_reducible[reducibleIndex]) - holder);
-		if (reducibleIndex > 0 || currentDiff > 0)
-			difference.push_back(getSymbol(currentDiff));
+		currentDiff = (getSymbol(_reducible[reducibleIndex]) - holder);
+		if (reducibleIndex > 0 || currentDiff > 0) { 
+			difference.push_back(currentDiff + '0');
+		}
 		holder = 0;
 	}
 
@@ -248,22 +256,28 @@ BigNumber& BigNumber::operator-(BigNumber& diminutive)
 	}
 
 	for (size_t differenceIndex = 0; differenceIndex < difference.length(); differenceIndex++) {
-		if (difference[differenceIndex] == '0')
+		if (difference[differenceIndex] != getSymbol(0)) {
+			break;
+		}
+		
+		if (difference[differenceIndex] == getSymbol(0))
 		{
 			zeroesCounter++;
 		}
 	}
 
-	if (zeroesCounter > 1) {
+	if (zeroesCounter >= 1) {
 		for (size_t differenceIndex = 0; differenceIndex < difference.length(); differenceIndex++) {
-			if (difference[differenceIndex] != '0')
+			if (difference[differenceIndex] != getSymbol(0))
 			{
 				firstNonZeroDigitIndex = differenceIndex; 
 				break;
 			}
 		}
 
-		std::string differenceWithoutFrontZeroes = difference.substr(firstNonZeroDigitIndex, difference.length() - 1);
+		std::string differenceWithoutFrontZeroes = 
+			(0 <= firstNonZeroDigitIndex && firstNonZeroDigitIndex <= difference.length() - 1) 
+			? difference.substr(firstNonZeroDigitIndex, difference.length() - 1) : "0";
 		*this = BigNumber(differenceWithoutFrontZeroes);
 	}
 	else {
@@ -346,7 +360,8 @@ BigNumber& BigNumber::operator/(BigNumber& divisor)
 	BigNumber currentDivisor = BigNumber(_divisor);
 
 	BigNumber diff = currentDivisible;
-	while (!isSmaller(diff.getNumber(), currentDivisor.getNumber())) {
+	while (!(isSmaller(diff.getNumber(), currentDivisor.getNumber()) 
+		|| areSame(diff.getNumber(), currentDivisor.getNumber()))) {
 		diff = diff - currentDivisor;
 		quotient++;
 	}
@@ -356,96 +371,21 @@ BigNumber& BigNumber::operator/(BigNumber& divisor)
 	return *this;
 }
 
-const BigNumber BigNumber::mod(BigNumber& divisor, BigNumber& reminder) const
+BigNumber& BigNumber::mod(size_t divisor)
 {
-	if (type == NumberType::DECIMAL && divisor.getType() == NumberType::DECIMAL)
-	{
-		std::int64_t _divisible = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(number));
-		std::int64_t _divisor = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(divisor.getNumber()));
+	int modulusDivisor = 0;
 
-		reminder = (_divisible % _divisor != 0) ? BigNumber(DecimalNumbersParser::decimalToString(_divisible % _divisor))
-			: BigNumber();
-		return BigNumber(DecimalNumbersParser::decimalToString(_divisible / _divisor));
+	for (size_t index = 0; index < number.length(); index++) {
+		modulusDivisor = (modulusDivisor * base + getValue(number[index])) % divisor;
 	}
+	*this = BigNumber(std::to_string(modulusDivisor));
 
-	if ((type == NumberType::DECIMAL && divisor.getType() == NumberType::HEX)
-		|| (type == NumberType::HEX && divisor.getType() == NumberType::DECIMAL)
-		|| (type == NumberType::HEX && divisor.getType() == NumberType::HEX))
-	{
-		std::int64_t _divisible = HexNumbersParser::hexToDecimal(Helpers::toCharArray(number));
-		std::int64_t _divisor = HexNumbersParser::hexToDecimal(Helpers::toCharArray(divisor.getNumber()));
-
-		reminder = (_divisible % _divisor != 0) ? BigNumber(HexNumbersParser::decimalToHex(_divisible % _divisor))
-			: BigNumber();
-		return BigNumber(HexNumbersParser::decimalToHex(_divisible / _divisor));
-	}
-
-	throw std::invalid_argument("Invalid divisible and divisor!");
-}
-
-const BigNumber BigNumber::sqrt() const
-{
-	if (type == NumberType::DECIMAL)
-	{
-		std::int64_t _number = DecimalNumbersParser::stringToDecimal(Helpers::toCharArray(number));
-		std::int64_t updatableSum = 0;
-		std::int64_t heightestPowerOfFour = 1 << 30;
-
-		while (heightestPowerOfFour > _number)
-		{
-			heightestPowerOfFour >>= 2;
-
-			while (heightestPowerOfFour != 0) {
-				if (_number >= updatableSum + heightestPowerOfFour) {
-					_number -= updatableSum + heightestPowerOfFour;
-					updatableSum = (updatableSum >> 1) + heightestPowerOfFour;
-				}
-				else {
-					updatableSum >>= 1;
-				}
-				heightestPowerOfFour >>= 2;
-			}
-		}
-
-		return BigNumber(DecimalNumbersParser::decimalToString(updatableSum));
-	}
-
-	if (type == NumberType::HEX)
-	{
-		std::int64_t _number = HexNumbersParser::hexToDecimal(Helpers::toCharArray(number));
-		std::int64_t updatableSum = 0;
-		std::int64_t heightestPowerOfFour = 1 << 30;
-
-		while (heightestPowerOfFour > _number)
-		{
-			heightestPowerOfFour >>= 2;
-
-			while (heightestPowerOfFour != 0) {
-				if (_number >= updatableSum + heightestPowerOfFour) {
-					_number -= updatableSum + heightestPowerOfFour;
-					updatableSum = (updatableSum >> 1) + heightestPowerOfFour;
-				}
-				else {
-					updatableSum >>= 1;
-				}
-				heightestPowerOfFour >>= 2;
-			}
-		}
-
-		return BigNumber(HexNumbersParser::decimalToHex(updatableSum));
-	}
-
-	throw std::invalid_argument("Invalid number to be square rooted!");
+	return *this;
 }
 
 const std::string BigNumber::getNumber() const
 {
 	return this->number;
-}
-
-const NumberType BigNumber::getType() const
-{
-	return this->type;
 }
 
 const int BigNumber::getBase() const

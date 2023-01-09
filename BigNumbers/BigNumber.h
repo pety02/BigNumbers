@@ -3,8 +3,6 @@
 #include <fstream>
 #include <iostream>
 
-#include "DecimalNumbersParser.h"
-#include "HexNumbersParser.h"
 #include "Helpers.h"
 #include "InputValidator.h"
 
@@ -12,16 +10,11 @@
 #ifndef BIGNUMBER_H
 #define BIGNUMBER_H
 
-enum class NumberType
-{
-	DECIMAL, HEX
-};
-
 class BigNumber
 {
 private:
 	std::string number;
-	NumberType type;
+	
 	int base;
 
 	void setNumberTypeAndBase(std::string);
@@ -55,15 +48,13 @@ public:
 
 	BigNumber& operator/(BigNumber&);
 
-	const BigNumber mod(BigNumber&, BigNumber&) const;
-
-	const BigNumber sqrt() const;
+	BigNumber& mod(size_t);
 
 	const std::string getNumber() const;
 
-	const NumberType getType() const;
-
 	const int getBase() const;
+
+	int hexToDecimal(std::string hex);
 };
 
 #endif

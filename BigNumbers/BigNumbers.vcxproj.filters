@@ -15,13 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DecimalNumbersParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Helpers.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HexNumbersParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputValidator.cpp">
@@ -35,13 +29,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DecimalNumbersParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Helpers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HexNumbersParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InputValidator.h">

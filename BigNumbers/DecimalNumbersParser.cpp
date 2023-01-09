@@ -1,4 +1,4 @@
-#include "DecimalNumbersParser.h"
+/*#include "DecimalNumbersParser.h"
 #include <cstring>
 
 std::int64_t DecimalNumbersParser::stringToDecimal(const char* numberAsCharArray)
@@ -28,4 +28,4 @@ std::string DecimalNumbersParser::decimalToString(std::int64_t number)
 	numberAsString[numberSize] = '\0';
 
 	return numberAsString;
-}
+}*/
