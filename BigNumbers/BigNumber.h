@@ -28,7 +28,6 @@ private:
 	 *  Returns the big number's symbol.
 	 *
 	 *      @param [in]  
-	 *
 	 *      @return The symbol.
 	 */
 	char getSymbol(int);
@@ -37,7 +36,6 @@ private:
 	 *  Returns character depending on number's value.
 	 *
 	 *      @param [in]  number
-	 *
 	 *      @return The value.
 	 */
 	int getValue(char);
@@ -46,7 +44,6 @@ private:
 	 *  Returns true if the big number is smaller than sndNumberString.
 	 *
 	 *      @param [in]  sndNumberString
-	 *
 	 *      @return True if smaller. False if not.
 	 */
 	bool isSmaller(std::string);
@@ -55,7 +52,6 @@ private:
 	 *  Are the big number and sndNumberString same.
 	 *
 	 *      @param [in]  sndNumberString
-	 *
 	 *      @return True if same. False if not.
 	 */
 	bool areSame(std::string);
@@ -74,74 +70,82 @@ public:
 	BigNumber(std::string);
 	
 	/*!
-	 * Default virtual destructor.
+	 * Default virtual destructor in case someday extendance needed.
 	 */
 	virtual ~BigNumber() = default;
 
 	/*!
-	 *  Operator>>s the big number.
+	 *  Operator>>s inputs big number.
 	 *
 	 *      @param [in,out]  input
 	 */
 	void operator>>(std::istream&);
 	
 	/*!
-	 *  Operator<<s the big number.
+	 *  Operator<<s otputs big number.
 	 *
 	 *      @param [in,out]  output
 	 */
 	void operator <<(std::ostream&);
 
 	/*!
-	 *  Operator=s the big number.
+	 *  Operator=s assignes big number.
 	 *
 	 *      @param [in] otherNumber
-	 *
 	 *      @return copy of otherNumber.
 	 */
 	BigNumber& operator=(const BigNumber&);
 
 	/*!
-	 *  Operator+s the big number.
+	 *  Operator+s sums big numbers. The algorithm behind this method
+	 *	sums big numbers by adding them character by character. 
 	 *
 	 *      @param [in,out]  sndCollectable
-	 *
 	 *      @return sum of two big numbers.
 	 */
 	BigNumber& operator+(BigNumber&);
 
 	/*!
-	 *  Operator-s the big number.
+	 *  Operator-s substracts big numbers. The algorithm behind this method
+	 *	substracts big numbers by substracting them character by character. 
 	 *
 	 *      @param [in,out]  diminutive
-	 *
 	 *      @return difference of two big numbers.
 	 */
 	BigNumber& operator-(BigNumber&);
 
 	/*!
-	 *  Operator*s the big number.
+	 *  Operator*s multiplies big numbers. The algorithm behind this method
+	 *	multiplies big numbers by multiplying them character by character. 
 	 *
 	 *      @param [in,out]  sndMultiplier
-	 *
 	 *      @return product of two big numbers.
 	 */
 	BigNumber& operator*(BigNumber&);
 
 	/*!
-	 *  Operator/s the big number.
+	 *  Operator/s devides big numbers. The algorithm behind this method
+	 *	devides big numbers by sbstracting the divisor from divisible while
+	 *	their difference become lower or equal to zero and increment a counter
+	 *	that is the quotient of these two big numbers at the end of the method. 
 	 *
 	 *      @param [in,out]  divisor
-	 *
 	 *      @return quotient of two big numbers.
 	 */
 	BigNumber& operator/(BigNumber&);
 
 	/*!
-	 *  Mods the big number.
+	 *  Deviddes two big numbers with quotient and reminder. Then return 
+	 *	only the reminder. The algorithm behind this method devides big 
+	 *	numbers by sbstracting the divisor from divisible while their difference 
+	 *	becomes lower or equal to zero and increment a counter that is the 
+	 *	quotient of these two big numbers at the end of the method. After all, 
+	 *	the method returns the difference between divisible and the product of 
+	 * quotient and divisor by the formula:
+	 * 
+	 *  reminder = divisible - divisor * quotient. 
 	 *
 	 *      @param [in]  divisor
-	 *
 	 *      @return reminder of division of two big numbers.
 	 */
 	BigNumber& mod(size_t);
@@ -164,7 +168,6 @@ public:
 	 *  Hex number to decimal.
 	 *
 	 *      @param [in] hex 
-	 *
 	 *      @return decimal number from hex. 
 	 */
 	int hexToDecimal(std::string hex);

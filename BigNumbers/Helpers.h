@@ -22,7 +22,6 @@ public:
 	 *  Returns the string's to char array.
 	 *
 	 *      @param [in]  string
-	 *
 	 *      @return array of string's characters.
 	 */
 	static char* toCharArray(const std::string);
