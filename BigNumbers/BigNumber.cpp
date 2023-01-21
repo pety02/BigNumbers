@@ -176,6 +176,7 @@ BigNumber& BigNumber::operator+(BigNumber& sndCollectable)
 	
 	if (largerCollectableLength < smallerCollectableLength) {
 		std::swap(smallerCollectable, largerCollectable);
+		std::swap(smallerCollectableLength, largerCollectableLength);
 	}
 
 	std::reverse(smallerCollectable.begin(), smallerCollectable.end());
@@ -183,14 +184,14 @@ BigNumber& BigNumber::operator+(BigNumber& sndCollectable)
 
 	std::string sum = "";
 	int holder = 0, currentSum = 0;
-	for (size_t smallerCollectableIndex = 0; smallerCollectableIndex < largerCollectableLength; smallerCollectableIndex++) {
+	for (size_t smallerCollectableIndex = 0; smallerCollectableIndex < smallerCollectableLength; smallerCollectableIndex++) {
 		currentSum = getValue(smallerCollectable[smallerCollectableIndex]) 
 			+ getValue(largerCollectable[smallerCollectableIndex]) + holder;
 		sum.push_back(getSymbol(currentSum % base));
 		holder = currentSum / base;
 	}
 
-	for (size_t largerCollectableIndex = largerCollectableLength; largerCollectableIndex < smallerCollectableLength; largerCollectableIndex++)
+	for (size_t largerCollectableIndex = smallerCollectableLength; largerCollectableIndex < largerCollectableLength; largerCollectableIndex++)
 	{
 		currentSum = getValue(largerCollectable[largerCollectableIndex]) + holder;
 		sum.push_back(getSymbol(currentSum % base));
@@ -213,7 +214,7 @@ BigNumber& BigNumber::operator-(BigNumber& diminutive)
 	std::string _reducible = number, _diminutive = diminutive.getNumber();
 
 	if (this->isSmaller(_diminutive)) {
-		swap(_reducible, _diminutive);
+		std::swap(_reducible, _diminutive);
 	}
 
 	int reducibleLength = _reducible.length(), diminutiveLength = _diminutive.length();
@@ -238,12 +239,12 @@ BigNumber& BigNumber::operator-(BigNumber& diminutive)
 
 	for (int reducibleIndex = reducibleLength - diminutiveLength - 1; reducibleIndex >= 0; reducibleIndex--) {
 		if (_reducible[reducibleIndex] == getSymbol(0) && holder) {
-			difference.push_back(getValue(base - 1));
+			difference.push_back(getSymbol(base - 1));
 			continue;
 		}
-		currentDiff = (getSymbol(_reducible[reducibleIndex]) - holder);
+		currentDiff = getValue(getSymbol(getValue(_reducible[reducibleIndex]) - holder));
 		if (reducibleIndex > 0 || currentDiff > 0) { 
-			difference.push_back(currentDiff + '0');
+			difference.push_back(getSymbol(currentDiff));
 		}
 		holder = 0;
 	}
