@@ -18,11 +18,10 @@ private:
 	int base;
 
 	/*!
-	 *  Sets the big number's number value and base depending on that numberAsString 
-	 *	is valid decimal or valid hex number.
+	 *  Sets the big number's number and base.
 	 *
-	 *      @param [in]   numberAsString.
-	 */
+	 *      @param [in]   to set.
+	 */	
 	void setNumberAndBase(std::string);
 
 	/*!

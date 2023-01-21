@@ -1,0 +1,166 @@
+\hypertarget{class_big_number}{}\doxysection{Big\+Number Class Reference}
+\label{class_big_number}\index{BigNumber@{BigNumber}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_big_number_a0d12fbec476322042ba36e61e1b0db82}{Big\+Number}} ()
+\item 
+\mbox{\hyperlink{class_big_number_ad685e7a16b470ce03764424bfc24c1b0}{Big\+Number}} (std\+::string)
+\item 
+virtual \mbox{\hyperlink{class_big_number_abe1abff54646334e7127f4c414b9d216}{$\sim$\+Big\+Number}} ()=default
+\item 
+void \mbox{\hyperlink{class_big_number_a6c864c14bb746fa3fa8750532d85e63a}{operator$>$$>$}} (std\+::istream \&)
+\item 
+void \mbox{\hyperlink{class_big_number_a2288610f228de56d12a4b5e5bcda363a}{operator$<$$<$}} (std\+::ostream \&)
+\item 
+\mbox{\hyperlink{class_big_number}{Big\+Number}} \& \mbox{\hyperlink{class_big_number_a93b21cced2b5529d6dbfc7c4b7992181}{operator=}} (const \mbox{\hyperlink{class_big_number}{Big\+Number}} \&)
+\item 
+\mbox{\hyperlink{class_big_number}{Big\+Number}} \& \mbox{\hyperlink{class_big_number_ab5e3b30ecbb1a0f68ce6087f5d9568de}{operator+}} (\mbox{\hyperlink{class_big_number}{Big\+Number}} \&)
+\item 
+\mbox{\hyperlink{class_big_number}{Big\+Number}} \& \mbox{\hyperlink{class_big_number_a96d2c9a08a1a88859f88e00016b60420}{operator-\/}} (\mbox{\hyperlink{class_big_number}{Big\+Number}} \&)
+\item 
+\mbox{\hyperlink{class_big_number}{Big\+Number}} \& \mbox{\hyperlink{class_big_number_a350a5a8592e8fdc897fa5742905d4c44}{operator$\ast$}} (\mbox{\hyperlink{class_big_number}{Big\+Number}} \&)
+\item 
+\mbox{\hyperlink{class_big_number}{Big\+Number}} \& \mbox{\hyperlink{class_big_number_a1a01442f8e7c67f7306e74a059af7041}{operator/}} (\mbox{\hyperlink{class_big_number}{Big\+Number}} \&)
+\item 
+\mbox{\hyperlink{class_big_number}{Big\+Number}} \& \mbox{\hyperlink{class_big_number_afdce9396aa4287bac747dd5b9a776bc3}{mod}} (size\+\_\+t)
+\item 
+const std\+::string \mbox{\hyperlink{class_big_number_ab890b423d2f6215a78825b9266382850}{get\+Number}} () const
+\item 
+const int \mbox{\hyperlink{class_big_number_a8761b66cbb1ba0bfb54df022e744f3b8}{get\+Base}} () const
+\item 
+int \mbox{\hyperlink{class_big_number_ada6372ff7be134bcfd2c7de2b47dfa0c}{hex\+To\+Decimal}} (std\+::string hex)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_big_number_a0d12fbec476322042ba36e61e1b0db82}\label{class_big_number_a0d12fbec476322042ba36e61e1b0db82}} 
+\index{BigNumber@{BigNumber}!BigNumber@{BigNumber}}
+\index{BigNumber@{BigNumber}!BigNumber@{BigNumber}}
+\doxysubsubsection{\texorpdfstring{BigNumber()}{BigNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Big\+Number\+::\+Big\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default constructor. \mbox{\Hypertarget{class_big_number_ad685e7a16b470ce03764424bfc24c1b0}\label{class_big_number_ad685e7a16b470ce03764424bfc24c1b0}} 
+\index{BigNumber@{BigNumber}!BigNumber@{BigNumber}}
+\index{BigNumber@{BigNumber}!BigNumber@{BigNumber}}
+\doxysubsubsection{\texorpdfstring{BigNumber()}{BigNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Big\+Number\+::\+Big\+Number (\begin{DoxyParamCaption}\item[{std\+::string}]{ }\end{DoxyParamCaption})}
+
+General use constructor. \begin{DoxyVerb}@param [in]  numberAsString
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_big_number_abe1abff54646334e7127f4c414b9d216}\label{class_big_number_abe1abff54646334e7127f4c414b9d216}} 
+\index{BigNumber@{BigNumber}!````~BigNumber@{$\sim$BigNumber}}
+\index{````~BigNumber@{$\sim$BigNumber}!BigNumber@{BigNumber}}
+\doxysubsubsection{\texorpdfstring{$\sim$BigNumber()}{~BigNumber()}}
+{\footnotesize\ttfamily virtual Big\+Number\+::$\sim$\+Big\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+Default virtual destructor. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_big_number_a8761b66cbb1ba0bfb54df022e744f3b8}\label{class_big_number_a8761b66cbb1ba0bfb54df022e744f3b8}} 
+\index{BigNumber@{BigNumber}!getBase@{getBase}}
+\index{getBase@{getBase}!BigNumber@{BigNumber}}
+\doxysubsubsection{\texorpdfstring{getBase()}{getBase()}}
+{\footnotesize\ttfamily const int Big\+Number\+::get\+Base (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the big number\textquotesingle{}s base. \begin{DoxyVerb}@return The base.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_big_number_ab890b423d2f6215a78825b9266382850}\label{class_big_number_ab890b423d2f6215a78825b9266382850}} 
+\index{BigNumber@{BigNumber}!getNumber@{getNumber}}
+\index{getNumber@{getNumber}!BigNumber@{BigNumber}}
+\doxysubsubsection{\texorpdfstring{getNumber()}{getNumber()}}
+{\footnotesize\ttfamily const std\+::string Big\+Number\+::get\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the big number\textquotesingle{}s number. \begin{DoxyVerb}@return The number.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_big_number_ada6372ff7be134bcfd2c7de2b47dfa0c}\label{class_big_number_ada6372ff7be134bcfd2c7de2b47dfa0c}} 
+\index{BigNumber@{BigNumber}!hexToDecimal@{hexToDecimal}}
+\index{hexToDecimal@{hexToDecimal}!BigNumber@{BigNumber}}
+\doxysubsubsection{\texorpdfstring{hexToDecimal()}{hexToDecimal()}}
+{\footnotesize\ttfamily int Big\+Number\+::hex\+To\+Decimal (\begin{DoxyParamCaption}\item[{std\+::string}]{hex }\end{DoxyParamCaption})}
+
+Hex number to decimal. \begin{DoxyVerb}@param [in] hex 
+
+@return decimal number from hex. 
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_big_number_afdce9396aa4287bac747dd5b9a776bc3}\label{class_big_number_afdce9396aa4287bac747dd5b9a776bc3}} 
+\index{BigNumber@{BigNumber}!mod@{mod}}
+\index{mod@{mod}!BigNumber@{BigNumber}}
+\doxysubsubsection{\texorpdfstring{mod()}{mod()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_big_number}{Big\+Number}} \& Big\+Number\+::mod (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{ }\end{DoxyParamCaption})}
+
+Mods the big number. \begin{DoxyVerb}@param [in]  divisor
+
+@return reminder of division of two big numbers.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_big_number_a350a5a8592e8fdc897fa5742905d4c44}\label{class_big_number_a350a5a8592e8fdc897fa5742905d4c44}} 
+\index{BigNumber@{BigNumber}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!BigNumber@{BigNumber}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_big_number}{Big\+Number}} \& Big\+Number\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_big_number}{Big\+Number}} \&}]{ }\end{DoxyParamCaption})}
+
+Operator$\ast$s the big number. \begin{DoxyVerb}@param [in,out]  sndMultiplier
+
+@return product of two big numbers.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_big_number_ab5e3b30ecbb1a0f68ce6087f5d9568de}\label{class_big_number_ab5e3b30ecbb1a0f68ce6087f5d9568de}} 
+\index{BigNumber@{BigNumber}!operator+@{operator+}}
+\index{operator+@{operator+}!BigNumber@{BigNumber}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_big_number}{Big\+Number}} \& Big\+Number\+::operator+ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_big_number}{Big\+Number}} \&}]{ }\end{DoxyParamCaption})}
+
+Operator+s the big number. \begin{DoxyVerb}@param [in,out]  sndCollectable
+
+@return sum of two big numbers.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_big_number_a96d2c9a08a1a88859f88e00016b60420}\label{class_big_number_a96d2c9a08a1a88859f88e00016b60420}} 
+\index{BigNumber@{BigNumber}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!BigNumber@{BigNumber}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_big_number}{Big\+Number}} \& Big\+Number\+::operator-\/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_big_number}{Big\+Number}} \&}]{ }\end{DoxyParamCaption})}
+
+Operator-\/s the big number. \begin{DoxyVerb}@param [in,out]  diminutive
+
+@return difference of two big numbers.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_big_number_a1a01442f8e7c67f7306e74a059af7041}\label{class_big_number_a1a01442f8e7c67f7306e74a059af7041}} 
+\index{BigNumber@{BigNumber}!operator/@{operator/}}
+\index{operator/@{operator/}!BigNumber@{BigNumber}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_big_number}{Big\+Number}} \& Big\+Number\+::operator/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_big_number}{Big\+Number}} \&}]{ }\end{DoxyParamCaption})}
+
+Operator/s the big number. \begin{DoxyVerb}@param [in,out]  divisor
+
+@return quotient of two big numbers.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_big_number_a2288610f228de56d12a4b5e5bcda363a}\label{class_big_number_a2288610f228de56d12a4b5e5bcda363a}} 
+\index{BigNumber@{BigNumber}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!BigNumber@{BigNumber}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily void Big\+Number\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{ }\end{DoxyParamCaption})}
+
+Operator\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}s the big number. \begin{DoxyVerb}@param [in,out]  output
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_big_number_a93b21cced2b5529d6dbfc7c4b7992181}\label{class_big_number_a93b21cced2b5529d6dbfc7c4b7992181}} 
+\index{BigNumber@{BigNumber}!operator=@{operator=}}
+\index{operator=@{operator=}!BigNumber@{BigNumber}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_big_number}{Big\+Number}} \& Big\+Number\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_big_number}{Big\+Number}} \&}]{ }\end{DoxyParamCaption})}
+
+Operator=s the big number. \begin{DoxyVerb}@param [in] otherNumber
+
+@return copy of otherNumber.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_big_number_a6c864c14bb746fa3fa8750532d85e63a}\label{class_big_number_a6c864c14bb746fa3fa8750532d85e63a}} 
+\index{BigNumber@{BigNumber}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!BigNumber@{BigNumber}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}}
+{\footnotesize\ttfamily void Big\+Number\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{ }\end{DoxyParamCaption})}
+
+Operator\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}s the big number. \begin{DoxyVerb}@param [in,out]  input
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/petya/source/repos/\+Big\+Numbers/\+Big\+Numbers/Big\+Number.\+h\end{DoxyCompactItemize}
